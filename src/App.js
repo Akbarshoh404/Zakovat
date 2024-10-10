@@ -3,8 +3,8 @@ import { Route } from "react-router-dom";
 
 import Home from "./Landing/Home/index"
 
-import SignUp from "./Auth/Sign Up/index";
-import SignIn from "./Auth/Sign In/index"
+import SignUp from "./Auth/SignUp/index";
+import SignIn from "./Auth/SignIn/index"
 
 function App() {
   return (
