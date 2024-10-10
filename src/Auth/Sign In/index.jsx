@@ -7,6 +7,11 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+export let isStudent = false;
+export let isTeacher = false;
+
+export let FinalUser = {};
+
 const SignIn = () => {
   return (
     <>
