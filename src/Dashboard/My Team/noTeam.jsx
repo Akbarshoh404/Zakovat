@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "./style.module.scss";
+import { useParams } from "react-router-dom";
 
 const NoTeam = () => {
+  const { id } = useParams();
+
   const [teamName, setTeamName] = useState("");
   const [grade, setGrade] = useState("");
   const [participants, setParticipants] = useState("");
@@ -17,18 +20,18 @@ const NoTeam = () => {
     setSuccess("");
 
     try {
-      const response = await axios.post("http://localhost:8080/teams/", {
+      // Create the team
+      const teamResponse = await axios.post("http://localhost:8080/teams/", {
         name: teamName,
         grade: parseInt(grade),
         participants: participants.split(",").map((id) => ({ id: id.trim() })), // Map participants to the correct format
       });
 
-      if (
-        response.status === 201 ||
-        response.status === 200 ||
-        response.status === 204
-      ) {
+      // Check if the team was created successfully
+      if (teamResponse.status == 201 || teamResponse.status == 200 || teamResponse.status == 204) {
         setSuccess("Team created successfully!");
+
+        // Reset the form fields
         setTeamName("");
         setGrade("");
         setParticipants("");
@@ -37,6 +40,7 @@ const NoTeam = () => {
       }
     } catch (err) {
       setError("An error occurred. Please try again.");
+      console.error(err);
     } finally {
       setLoading(false);
     }

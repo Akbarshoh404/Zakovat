@@ -7,7 +7,7 @@ import NoTeam from "./noTeam";
 import YesTeam from "./yesTeam";
 
 const DashboardMyTeam = () => {
-  var user = JSON.parse(localStorage.getItem("User"));
+  const user = JSON.parse(localStorage.getItem("User"));
   const { id } = useParams();
 
   return (
@@ -15,7 +15,7 @@ const DashboardMyTeam = () => {
       <DashboardNavbar />
 
       <div className={styles.myTeam}>
-        {user && user.teamId === "" ? <NoTeam /> : <YesTeam />}
+        {user && (!user.teamId || user.teamId.trim() === "") ? <NoTeam /> : <YesTeam />}
       </div>
     </>
   );
