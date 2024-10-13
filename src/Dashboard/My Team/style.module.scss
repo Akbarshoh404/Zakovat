@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+.myTeam {
+  width: 100%;
+  padding: 50px;
+  padding-left: 400px;
+  font-family: Rubik;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+// No Team
+
+.noTeam {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+}
+
+.noTeamTitle {
+  font-size: 3rem;
+  color: black;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.teamForm {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  background-color: #333; // Dark background for the form
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  font-size: 20px;
+  color: #fff; // White label text
+  margin-bottom: 5px;
+  display: block;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  background-color: #555; // Dark background for inputs
+  color: #fff; // White text in inputs
+  border-radius: 4px;
+}
+
+.formGroup input::placeholder {
+  color: #ccc; // Lighter color for placeholder text
+}
+
+.createButton {
+  background-color: #007bff; // Blue button
+  color: white;
+  font-size: 1rem;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.createButton:hover {
+  background-color: #0056b3; // Darker blue on hover
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+.success {
+  color: green;
+  margin-top: 10px;
+}
+
+.noAccount {
+  margin-top: 15px;
+  color: #007bff; // Blue link text
+  cursor: pointer;
+}
+
+.noAccount:hover {
+  text-decoration: underline;
+}
+
+// Yes Team
+
+.yesTeam {
+  width: 100%;
+}

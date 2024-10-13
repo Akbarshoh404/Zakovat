@@ -1,0 +1,64 @@
+.sidenav {
+  position: fixed;
+  height: 100vh;
+  width: 350px;
+  background: #2c2c2c;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+h3 {
+  margin: 5px 0;
+}
+
+p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #b3b3b3; // Lighter color for email
+  font-weight: 500;
+
+  span{
+    font-weight: 700;
+    font-size: 1rem;
+  }
+}
+
+.navLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.link {
+  text-decoration: none !important;
+  color: #b3b3b3;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #404040;
+  }
+}
+
+.active {
+  background: #404040;
+  color: white;
+}

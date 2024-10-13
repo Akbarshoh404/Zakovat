@@ -12,6 +12,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  const [teamId, setTeamId] = useState("");
 
   const Create = async (e) => {
     e.preventDefault();
@@ -27,6 +28,7 @@ const SignUp = () => {
         surname,
         login,
         password,
+        teamId,
       });
 
       if (res.status == 201 || res.status == 200 || res.status == 204) {
