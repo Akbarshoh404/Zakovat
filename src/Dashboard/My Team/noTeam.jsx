@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "./style.module.scss";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const NoTeam = () => {
   const { id } = useParams();
+  const userId = localStorage.getItem("userID");
+  const navigate = useNavigate();
 
   const [teamName, setTeamName] = useState("");
   const [grade, setGrade] = useState("");
-  const [participants, setParticipants] = useState("");
+  const [participants, setParticipants] = useState(Array(6).fill("")); // Array for 6 participants
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
+
+  const handleParticipantChange = (index, value) => {
+    const updatedParticipants = [...participants];
+    updatedParticipants[index] = value.trim();
+    setParticipants(updatedParticipants);
+  };
 
   const handleCreateTeam = async (e) => {
     e.preventDefault();
@@ -20,21 +29,24 @@ const NoTeam = () => {
     setSuccess("");
 
     try {
-      // Create the team
       const teamResponse = await axios.post("http://localhost:8080/teams/", {
         name: teamName,
         grade: parseInt(grade),
-        participants: participants.split(",").map((id) => ({ id: id.trim() })), // Map participants to the correct format
+        participants: participants.map((id) => ({ id })),
       });
 
-      // Check if the team was created successfully
-      if (teamResponse.status == 201 || teamResponse.status == 200 || teamResponse.status == 204) {
+      if (teamResponse.status >= 200 && teamResponse.status <= 204) {
+        let team = {
+          teamName: teamName,
+          grade: grade,
+          participants:participants,
+        }
+        localStorage.setItem("team", team);
         setSuccess("Team created successfully!");
-
-        // Reset the form fields
         setTeamName("");
         setGrade("");
-        setParticipants("");
+        setParticipants(Array(6).fill("")); // Reset participants to empty array
+        navigate(`/${userId}`);
       } else {
         setError("Failed to create team. Please try again.");
       }
@@ -77,19 +89,21 @@ const NoTeam = () => {
           />
         </div>
 
-        <div className={styles.formGroup}>
-          <label htmlFor="participants">
-            Participants' IDs (comma-separated)
-          </label>
-          <input
-            type="text"
-            id="participants"
-            value={participants}
-            onChange={(e) => setParticipants(e.target.value)}
-            required
-            placeholder="Enter participant IDs"
-          />
-        </div>
+        {[...Array(6)].map((_, index) => (
+          <div key={index} className={styles.formGroup}>
+            <label htmlFor={`participant${index + 1}`}>{`${
+              index + 1
+            }ST Participant's ID`}</label>
+            <input
+              type="text"
+              id={`participant${index + 1}`}
+              value={participants[index]}
+              onChange={(e) => handleParticipantChange(index, e.target.value)}
+              required
+              placeholder={`Enter participant ${index + 1} ID`}
+            />
+          </div>
+        ))}
 
         {loading ? (
           <p>Loading...</p>

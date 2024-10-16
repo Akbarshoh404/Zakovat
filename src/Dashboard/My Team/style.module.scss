@@ -108,5 +108,51 @@ input[type="number"] {
 // Yes Team
 
 .yesTeam {
-  width: 100%;
+  background-color: #f0f8ff; /* Light blue background */
+  border: 1px solid #1e90ff; /* Border color */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Padding inside the container */
+  margin: 20px 0; /* Margin around the component */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+.yesTeam h2 {
+  color: #1e90ff; /* Title color */
+  font-size: 24px; /* Title font size */
+  margin-bottom: 10px; /* Space below title */
+}
+
+.yesTeam p {
+  font-size: 18px; /* Text size for paragraphs */
+  margin: 5px 0; /* Margin around paragraphs */
+  color: #333; /* Text color */
+}
+
+.yesTeam ul {
+  list-style-type: none; /* Remove bullet points from list */
+  padding: 0; /* Remove padding from list */
+}
+
+.yesTeam li {
+  background-color: #e6f7ff; /* Light background for list items */
+  border: 1px solid #1e90ff; /* Border for list items */
+  border-radius: 4px; /* Rounded corners for list items */
+  padding: 10px; /* Padding for list items */
+  margin: 5px 0; /* Margin between list items */
+}
+
+.exitButton {
+  background-color: #ff4d4d; /* Red color for the exit button */
+  color: white; /* White text color */
+  border: none; /* No border */
+  padding: 10px 20px; /* Padding for the button */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Font size */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  margin-top: 20px; /* Margin at the top */
+}
+
+.exitButton:hover {
+  background-color: #ff1a1a; /* Darker red on hover */
 }
