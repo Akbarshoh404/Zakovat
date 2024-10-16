@@ -1,13 +1,108 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 
-*{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  color: #0b1e39;
 }
 
-.container{
-    width: 85%;
-    margin: auto;
+html,
+body {
+  height: 100%;
+}
+
+.teamsSection {
+  background-color: #0b1e39; /* Dark blue background */
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw; /* Full width of the viewport */
+  height: 100vh; /* Full height of the viewport */
+}
+
+.teamsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  max-width: 1200px;
+  color: #fff;
+}
+
+.textContainer {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.teamsTitle {
+  font-size: 36px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 20px;
+  font-family: "Rubik", sans-serif;
+}
+
+.loadingText {
+  font-size: 16px;
+  color: #0b1e39;
+}
+
+.errorText {
+  font-size: 16px;
+  color: #ff4b4b;
+}
+
+.tableContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.customTable {
+  width: 100%; /* Ensures full width */
+  border-collapse: collapse;
+  font-family: "Roboto", sans-serif;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 16px;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  /* Style for the top row (header) */
+  th {
+    background-color: #cba672; /* Header background color */
+    color: #0b1e39; /* White text for contrast */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+
+  /* Even rows with a subtle background color */
+  tr:nth-child(even) {
+    background-color: #ededf2; /* Alternating background color */
+  }
+
+  /* Odd rows default */
+  tr:nth-child(odd) {
+    background-color: #fff;
+  }
+
+  tr:hover {
+    background-color: #f1e4d0; /* Lighter hover effect for all rows */
+    transition: background-color 0.3s ease;
+  }
+
+  td {
+    background-color: #fff;
+  }
 }

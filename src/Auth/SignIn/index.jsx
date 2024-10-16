@@ -76,7 +76,7 @@ const SignIn = () => {
     } else if (approved) {
       notify("Welcome!👋🏿");
       sleep(1500).then(() => {
-        navigate(`/${FinalUser._id}`);
+        navigate(`/dashboard/${FinalUser._id}`);
       });
     } else {
       notify("Something is wrong!❌");

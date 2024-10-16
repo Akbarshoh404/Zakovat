@@ -46,7 +46,7 @@ const NoTeam = () => {
         setTeamName("");
         setGrade("");
         setParticipants(Array(6).fill("")); // Reset participants to empty array
-        navigate(`/${userId}`);
+        navigate(`/dashboard/${userId}`);
       } else {
         setError("Failed to create team. Please try again.");
       }

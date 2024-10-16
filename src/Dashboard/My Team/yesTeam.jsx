@@ -27,7 +27,7 @@ const YesTeam = ({ onExit }) => {
       } catch (error) {
         console.error("Error exiting the group:", error);
         alert("An error occurred while exiting the group. Please try again.");
-        navigate(`/${userId}`);
+        navigate(`/dashboard/${userId}`);
       }
     }
   };
