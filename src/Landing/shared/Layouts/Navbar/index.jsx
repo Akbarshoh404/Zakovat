@@ -12,7 +12,9 @@ const LandingNavbar = () => {
     <>
       <nav className={styles.nav}>
         <div className={styles.container}>
-          <img src={logo} alt="Logo" className={styles.logo} />
+          <Link to="/">
+            <img src={logo} alt="Logo" className={styles.logo} />
+          </Link>
 
           <div className={styles.navigation}>
             <Link to="/about">
@@ -53,17 +55,18 @@ const LandingNavbar = () => {
                 <Link to="/about" onClick={() => setOpen(false)}>
                   <p className={styles.DrawerNavigationP}>Biz Haqimizda</p>
                 </Link>
-                <Link to="/contact" onClick={() => setOpen(false)}>
-                  <p className={styles.DrawerNavigationP}>Contact Us</p>
+                <Link to="/teams" onClick={() => setOpen(false)}>
+                  <p className={styles.DrawerNavigationP}>Jamoalar</p>
+                </Link>
+                <Link to="/participants" onClick={() => setOpen(false)}>
+                  <p className={styles.DrawerNavigationP}>Bilimdonlar</p>
+                </Link>
+                <Link to="/turnirs" onClick={() => setOpen(false)}>
+                  <p className={styles.DrawerNavigationP}>Turnirlar</p>
                 </Link>
                 <Link to="/sign-in" onClick={() => setOpen(false)}>
                   <button className={styles.DrawerNavigationButton}>
-                    Sign In
-                  </button>
-                </Link>
-                <Link to="/sign-up" onClick={() => setOpen(false)}>
-                  <button className={styles.DrawerNavigationButton}>
-                    Sign Up
+                    Kabinet
                   </button>
                 </Link>
               </Drawer.Body>
