@@ -13,22 +13,22 @@ const DashboardNavbar = () => {
       </div>
       <ul className={styles.navLinks}>
         <li className={styles.link}>
-          <Link to={`/${user._id}/`}>Home</Link>
+          <Link to={`/dashboard/${user._id}/`}>Home</Link>
         </li>
         <li className={styles.link}>
-          <Link to={`/dashboard/teams`}>Teams</Link>
+          <Link to={`/dashboard/${user._id}/teams`}>Teams</Link>
         </li>
         <li className={styles.link}>
-          <Link to={`/${user._id}/team`}>My Team</Link>
+          <Link to={`/dashboard/${user._id}/team`}>My Team</Link>
         </li>
         <li className={styles.link}>
-          <Link to={`/dashboard/turnirs`}>Turnirs</Link>
+          <Link to={`/dashboard/${user._id}/turnirs`}>Turnirs</Link>
         </li>
         <li className={styles.link}>
-          <Link to={`/${user._id}/my-turnirs`}>My Turnirs</Link>
+          <Link to={`/dashboard/${user._id}/turnir`}>My Turnirs</Link>
         </li>
         <li className={styles.link}>
-          <Link to={`/${user._id}/settings`}>Settings</Link>
+          <Link to={`/dashboard/${user._id}/settings`}>Settings</Link>
         </li>
       </ul>
     </div>

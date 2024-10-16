@@ -2,6 +2,10 @@ import { Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 
 import Home from "./Landing/Home/index"
+import LandingAbout from "./Landing/About";
+import LandingParticipants from "./Landing/Participants";
+import LandingTeams from "./Landing/Teams";
+import LandingTurnirs from "./Landing/Turnirs";
 
 import SignUp from "./Auth/SignUp/index";
 import SignIn from "./Auth/SignIn/index"
@@ -20,6 +24,10 @@ function App() {
         {/* Home */}
 
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<LandingAbout />} />
+        <Route path="/participants" element={<LandingParticipants />} />
+        <Route path="/teams" element={<LandingTeams />} />
+        <Route path="/turnirs" element={<LandingTurnirs />} />
 
         {/* Auth */}
 
@@ -28,12 +36,12 @@ function App() {
 
         {/* DashBoard */}
 
-        <Route path="/:_id" element={<DashboardHome/>}/>
-        <Route path="/dashboard/teams/" element={<DashboardTeams/>}/>
-        <Route path="/dashboard/turnirs/" element={<DashboardTurnirs/>}/>
-        <Route path="/:_id/team" element={<DashboardMyTeam/>}/>
-        <Route path="/:_id/turnir" element={<DashboardMyTurnir/>}/>
-        <Route path="/:_id/settings" element={<DashboardSettings/>}/>
+        <Route path="/dashboard/:_id" element={<DashboardHome />} />
+        <Route path="/dashboard/:_id/teams" element={<DashboardTeams />} />
+        <Route path="/dashboard/:_id/turnirs" element={<DashboardTurnirs />} />
+        <Route path="/dashboard/:_id/team" element={<DashboardMyTeam />} />
+        <Route path="/dashboard/:_id/turnir" element={<DashboardMyTurnir />} />
+        <Route path="/dashboard/:_id/settings" element={<DashboardSettings />} />
       </Routes>
     </>
   );
