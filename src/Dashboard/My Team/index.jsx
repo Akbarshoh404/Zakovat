@@ -39,6 +39,7 @@ const DashboardMyTeam = () => {
       if (userTeam) {
         setTeam(userTeam);
         localStorage.setItem("team", JSON.stringify(userTeam));
+        localStorage.setItem("teamID", JSON.stringify(userTeam));
       }
     };
 

@@ -29,49 +29,56 @@ const LandingNavbar = () => {
             <Link to="/turnirs">
               <p className={styles.navigationP}>Turnirlar</p>
             </Link>
-            <Link to="/sign-in">
-              <button className={styles.navigationButton}>Kabinet</button>
-            </Link>
-
-            <ButtonToolbar className={styles.burger}>
-              <Button onClick={() => setOpen(true)}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  viewBox="0 0 50 50"
-                >
-                  <path d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z"></path>
-                </svg>
-              </Button>
-            </ButtonToolbar>
-
-            <Drawer
-              open={open}
-              onClose={() => setOpen(false)}
-              className={styles.drawerWidth}
-            >
-              <Drawer.Body className={styles.drawer}>
-                <Link to="/about" onClick={() => setOpen(false)}>
-                  <p className={styles.DrawerNavigationP}>Biz Haqimizda</p>
-                </Link>
-                <Link to="/teams" onClick={() => setOpen(false)}>
-                  <p className={styles.DrawerNavigationP}>Jamoalar</p>
-                </Link>
-                <Link to="/participants" onClick={() => setOpen(false)}>
-                  <p className={styles.DrawerNavigationP}>Bilimdonlar</p>
-                </Link>
-                <Link to="/turnirs" onClick={() => setOpen(false)}>
-                  <p className={styles.DrawerNavigationP}>Turnirlar</p>
-                </Link>
-                <Link to="/sign-in" onClick={() => setOpen(false)}>
-                  <button className={styles.DrawerNavigationButton}>
-                    Kabinet
-                  </button>
-                </Link>
-              </Drawer.Body>
-            </Drawer>
           </div>
+
+          <div className={styles.navigationButtons}>
+            <Link to="/sign-in">
+              <button className={styles.navigationButton}>Sign In</button>
+            </Link>
+            <Link to="/sign-up">
+              <button className={styles.navigationButton}>Sign Up</button>
+            </Link>
+          </div>
+
+          <ButtonToolbar className={styles.burger}>
+            <Button onClick={() => setOpen(true)}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 50 50"
+              >
+                <path d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z"></path>
+              </svg>
+            </Button>
+          </ButtonToolbar>
+
+          <Drawer
+            open={open}
+            onClose={() => setOpen(false)}
+            className={styles.drawerWidth}
+          >
+            <Drawer.Body className={styles.drawer}>
+              <Link to="/about" onClick={() => setOpen(false)}>
+                <p className={styles.DrawerNavigationP}>Biz Haqimizda</p>
+              </Link>
+              <Link to="/teams" onClick={() => setOpen(false)}>
+                <p className={styles.DrawerNavigationP}>Jamoalar</p>
+              </Link>
+              <Link to="/participants" onClick={() => setOpen(false)}>
+                <p className={styles.DrawerNavigationP}>Bilimdonlar</p>
+              </Link>
+              <Link to="/turnirs" onClick={() => setOpen(false)}>
+                <p className={styles.DrawerNavigationP}>Turnirlar</p>
+              </Link>
+              <Link to="/sign-in">
+                <button className={styles.DrawerNavigationButton}>Sign In</button>
+              </Link>
+              <Link to="/sign-up">
+                <button className={styles.DrawerNavigationButton}>Sign Up</button>
+              </Link>
+            </Drawer.Body>
+          </Drawer>
         </div>
       </nav>
     </>

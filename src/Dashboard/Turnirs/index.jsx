@@ -1,46 +1,50 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import styles from "./style.module.scss";
-
 import DashboardNavbar from "../shared/layoutes/Navbar";
 
-const DashboardTurnirs = () => {
-  const [data, setData] = useState([]); // State to hold tournament data
-  const [loading, setLoading] = useState(true); // State for loading status
-  const [error, setError] = useState(null); // State for error handling
+const TurnirList = () => {
+  const [turnirs, setTurnirs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const teamID = JSON.parse(localStorage.getItem("teamID")); // Retrieve team ID from localStorage
 
   useEffect(() => {
     const fetchTurnirs = async () => {
       try {
-        const response = await fetch("http://localhost:8080/turnirs");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const turnirs = await response.json();
-        setData(turnirs); // Update state with fetched data
+        const response = await axios.get("http://localhost:8080/turnirs");
+        setTurnirs(response.data);
       } catch (err) {
-        setError(err.message); // Handle error
+        setError("Failed to fetch turnirs. Please try again.");
+        console.error(err);
       } finally {
-        setLoading(false); // Set loading to false after fetch completes
+        setLoading(false);
       }
     };
 
     fetchTurnirs();
-  }, []); // Empty dependency array means this effect runs once after the initial render
+  }, []);
+
+  if (loading) return <p className={styles.loading}>Loading turnirs...</p>;
+  if (error) return <p className={styles.error}>{error}</p>;
 
   return (
     <>
       <DashboardNavbar />
-
-      <div className={styles.Teams}>
-        <h1 className={styles.teamsHeading}>Turnirs</h1>
-        {loading && <p>Loading...</p>} {/* Loading message */}
-        {error && <p>Error: {error}</p>} {/* Error message */}
-        {!loading && !error && (
-          <div className={styles.cardContainer}>
-            {data.map((turnir, index) => (
-              <div className={styles.card} key={index}>
-                <h2>{turnir.name}</h2>
-                <p>Date: {turnir.date}</p>
+      <div className={styles.turnirList}>
+        <h2 className={styles.title}>Tournaments</h2>
+        {turnirs.length === 0 ? (
+          <p className={styles.noTurnirs}>No turnirs available.</p>
+        ) : (
+          <div className={styles.turnirContainer}>
+            {turnirs.map((turnir) => (
+              <div key={turnir._id} className={styles.turnirCard}>
+                <h3 className={styles.turnirName}>{turnir.name}</h3>
+                <p className={styles.date}>Date: {turnir.date}</p>
+                {/* Apply button if no team ID */}
+                {!teamID && (
+                  <button className={styles.applyButton}>Apply</button>
+                )}
               </div>
             ))}
           </div>
@@ -50,4 +54,4 @@ const DashboardTurnirs = () => {
   );
 };
 
-export default DashboardTurnirs;
+export default TurnirList;

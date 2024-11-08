@@ -11,13 +11,3 @@
   margin: auto;
 }
 
-.header {
-  width: 100%;
-  height: 100vh;
-  filter: brightness(55%);
-  background-image: url("../../shared/images/Zakovat\ image.jpg");
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
-  z-index: 0;
-}

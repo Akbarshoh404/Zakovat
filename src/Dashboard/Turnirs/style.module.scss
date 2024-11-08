@@ -1,26 +1,68 @@
-.Teams {
-  width: 100%;
+.turnirList {
   padding: 50px;
   padding-left: 400px;
-}
-
-.cardContainer {
-  display: flex;
-  flex-wrap: wrap; /* Allow cards to wrap onto the next line */
-  justify-content: center;
-}
-
-.card {
-  background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  margin: 20px; /* Space between cards */
-  padding: 20px;
-  width: 300px; /* Fixed width for the card */
-}
 
-.teamInfo {
-  border-top: 1px solid #ddd; /* Optional separation line between teams */
-  margin-top: 10px; /* Space between teams */
-  padding-top: 10px; /* Space above team info */
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .noTurnirs {
+    color: #888;
+    font-size: 16px;
+  }
+
+  .turnirContainer {
+    display: flex;
+    flex-wrap: wrap; // Allows cards to wrap in the container
+    gap: 20px; // Space between cards
+
+    .turnirCard {
+      background-color: #fff;
+      border-radius: 6px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      flex: 1 1 calc(33% - 20px); // Responsive card width, adjust for your layout
+      min-width: 200px; // Minimum width for the card
+
+      .turnirName {
+        font-size: 20px;
+        color: #2c3e50;
+        margin-bottom: 5px;
+      }
+
+      .date {
+        font-size: 14px;
+        color: #7f8c8d;
+        margin-bottom: 10px;
+      }
+
+      .applyButton {
+        background-color: #27ae60;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #219653;
+        }
+      }
+    }
+  }
+
+  .loading {
+    font-size: 16px;
+    color: #2980b9;
+  }
+
+  .error {
+    font-size: 16px;
+    color: #e74c3c;
+  }
 }

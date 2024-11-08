@@ -5,7 +5,6 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  color: #0b1e39;
 }
 
 html,
@@ -14,13 +13,12 @@ body {
 }
 
 .teamsSection {
-  background-color: #0b1e39; /* Dark blue background */
   padding: 60px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw; /* Full width of the viewport */
-  height: 100vh; /* Full height of the viewport */
+  width: 100%;
+  background-color: transparent; /* Removed background color */
 }
 
 .teamsContainer {
@@ -28,8 +26,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 85%;
-  max-width: 1200px;
+  width: 75%;
   color: #fff;
 }
 
@@ -41,14 +38,14 @@ body {
 .teamsTitle {
   font-size: 36px;
   font-weight: bold;
-  color: white;
+  color: #555;
   margin-bottom: 20px;
   font-family: "Rubik", sans-serif;
 }
 
 .descriptionText {
   font-size: 18px;
-  color: #b0bec5;
+  color: #555;
   margin-bottom: 20px;
   font-family: "Rubik", sans-serif;
 }
@@ -63,6 +60,32 @@ body {
   color: #ff4b4b;
 }
 
+.searchContainer {
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.searchInput {
+  padding: 12px;
+  width: 100%;
+  max-width: 400px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    border-color: #cba672;
+  }
+
+  &::placeholder {
+    color: #aaa;
+  }
+}
+
 .tableContainer {
   display: flex;
   justify-content: center;
@@ -70,7 +93,7 @@ body {
 }
 
 .customTable {
-  width: 100%; /* Ensures full width */
+  width: 100%;
   border-collapse: collapse;
   font-family: "Roboto", sans-serif;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
@@ -80,36 +103,127 @@ body {
   th,
   td {
     border: 1px solid #ddd;
-    padding: 20px; /* Increased padding */
+    padding: 20px;
     text-align: center;
-    font-size: 16px; /* Increased font size */
+    font-size: 16px;
   }
 
-  /* Style for the top row (header) */
   th {
-    background-color: #cba672; /* Header background color */
-    color: #0b1e39; /* Text color for contrast */
+    background-color: #cba672;
+    color: white;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: bold;
   }
 
-  /* Even rows with a subtle background color */
   tr:nth-child(even) {
-    background-color: #ededf2; /* Alternating background color */
+    background-color: #ededf2;
   }
 
-  /* Odd rows default */
   tr:nth-child(odd) {
     background-color: #fff;
   }
 
   tr:hover {
-    background-color: #f1e4d0; /* Lighter hover effect for all rows */
+    background-color: #f1e4d0;
     transition: background-color 0.3s ease;
   }
+}
 
-  td {
-    background-color: #fff;
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pageButton {
+  padding: 10px 15px;
+  background-color: #cba672;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #a98f51;
   }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: #d8d8d8;
+    cursor: not-allowed;
+  }
+}
+
+.pageNumber {
+  font-size: 16px;
+  color: #555;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s 0.3s;
+}
+
+.modalOverlay.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+.modalContent {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.modalContent h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.modalContent p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.modalContent strong {
+  color: #cba672;
+}
+
+.closeButton {
+  background-color: #cba672;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }

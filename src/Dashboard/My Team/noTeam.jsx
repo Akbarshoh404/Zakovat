@@ -15,7 +15,6 @@ const NoTeam = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-
   const handleParticipantChange = (index, value) => {
     const updatedParticipants = [...participants];
     updatedParticipants[index] = value.trim();
@@ -28,24 +27,34 @@ const NoTeam = () => {
     setError("");
     setSuccess("");
 
+    const participantsData = participants.map((id) => ({ id })); // Create the correct structure for participants
+
+    // Log the data to check its structure
+    console.log("Sending Data:", {
+      name: teamName,
+      grade: parseInt(grade),
+      participants: participantsData,
+    });
+
     try {
       const teamResponse = await axios.post("http://localhost:8080/teams/", {
         name: teamName,
         grade: parseInt(grade),
-        participants: participants.map((id) => ({ id })),
+        participants: participantsData,
       });
 
       if (teamResponse.status >= 200 && teamResponse.status <= 204) {
-        let team = {
-          teamName: teamName,
-          grade: grade,
-          participants:participants,
-        }
-        localStorage.setItem("team", team);
+        const team = {
+          teamName,
+          grade: parseInt(grade),
+          participants,
+        };
+
+        localStorage.setItem("team", JSON.stringify(team)); // Stringify the team object for local storage
         setSuccess("Team created successfully!");
         setTeamName("");
         setGrade("");
-        setParticipants(Array(6).fill("")); // Reset participants to empty array
+        setParticipants(Array(6).fill("")); // Reset participants to empty strings
         navigate(`/dashboard/${userId}`);
       } else {
         setError("Failed to create team. Please try again.");

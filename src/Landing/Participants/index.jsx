@@ -3,28 +3,56 @@ import styles from "./style.module.scss";
 import LandingNavbar from "../shared/Layouts/Navbar";
 
 const LandingParticipants = () => {
-  const [data, setData] = useState([]); // State to hold participant data
-  const [loading, setLoading] = useState(true); // State for loading status
-  const [error, setError] = useState(null); // State for error handling
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [selectedParticipant, setSelectedParticipant] = useState(null);
 
   useEffect(() => {
     const fetchParticipants = async () => {
       try {
-        const response = await fetch("http://localhost:8080/participants"); // Adjust the API endpoint if necessary
+        const response = await fetch("http://localhost:8080/participants");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const participants = await response.json();
-        setData(participants); // Update state with fetched data
+        setData(participants);
       } catch (err) {
-        setError(err.message); // Handle error
+        setError(err.message);
       } finally {
-        setLoading(false); // Set loading to false after fetch completes
+        setLoading(false);
       }
     };
 
     fetchParticipants();
-  }, []); // Empty dependency array means this effect runs once after the initial render
+  }, []);
+
+  const filteredData = data.filter((participant) =>
+    participant.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentPageData = filteredData.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  const changePage = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Function to open the modal and show participant's details
+  const openModal = (participant) => {
+    setSelectedParticipant(participant);
+  };
+
+  // Function to close the modal
+  const closeModal = () => {
+    setSelectedParticipant(null);
+  };
 
   return (
     <>
@@ -38,10 +66,18 @@ const LandingParticipants = () => {
               events. Each participant brings their unique skills and passion to
               the competition!
             </p>
-            {loading && <p className={styles.loadingText}>Loading...</p>}{" "}
-            {/* Loading message */}
-            {error && <p className={styles.errorText}>Error: {error}</p>}{" "}
-            {/* Error message */}
+            {loading && <p className={styles.loadingText}>Loading...</p>}
+            {error && <p className={styles.errorText}>Error: {error}</p>}
+          </div>
+
+          <div className={styles.searchContainer}>
+            <input
+              type="text"
+              className={styles.searchInput}
+              placeholder="Search participants..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </div>
 
           {!loading && !error && (
@@ -56,8 +92,8 @@ const LandingParticipants = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((participant, index) => (
-                    <tr key={index}>
+                  {currentPageData.map((participant, index) => (
+                    <tr key={index} onClick={() => openModal(participant)}>
                       <td>{participant.name}</td>
                       <td>{participant.team}</td>
                       <td>{participant.grade}</td>
@@ -68,8 +104,43 @@ const LandingParticipants = () => {
               </table>
             </div>
           )}
+
+          {/* Pagination */}
+          <div className={styles.pagination}>
+            {Array.from({
+              length: Math.ceil(filteredData.length / itemsPerPage),
+            }).map((_, index) => (
+              <button
+                key={index}
+                className={styles.pageButton}
+                onClick={() => changePage(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
+
+      {selectedParticipant && (
+        <div className={`${styles.modalOverlay} ${styles.show}`}>
+          <div className={styles.modalContent}>
+            <h3>{selectedParticipant.name} - Details</h3>
+            <p>
+              <strong>Team:</strong> {selectedParticipant.team}
+            </p>
+            <p>
+              <strong>Grade:</strong> {selectedParticipant.grade}
+            </p>
+            <p>
+              <strong>Score:</strong> {selectedParticipant.score}
+            </p>
+            <button className={styles.closeButton} onClick={closeModal}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };

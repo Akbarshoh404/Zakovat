@@ -20,6 +20,10 @@
   position: relative;
 }
 
+h2{
+  color: white;
+}
+
 h3 {
   margin: 5px 0;
 }
@@ -27,12 +31,12 @@ h3 {
 p {
   margin: 0;
   font-size: 0.9rem;
-  color: #b3b3b3; // Lighter color for email
   font-weight: 500;
 
   span{
     font-weight: 700;
     font-size: 1rem;
+    color: white;
   }
 }
 
