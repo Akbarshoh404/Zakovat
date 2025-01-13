@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html, body {
+  height: 100%;
+}
+
+.aboutSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 80px 0 20px;
+}
+
+.aboutContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 75%;
+  color: #000;
+  gap: 100px;
+}
+
+.imageContainer {
+  width: 50%;
+}
+
+.image {
+  width: 100%;
+  object-fit: contain;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.textContainer {
+  width: 45%;
+  text-align: left;
+}
+
+.aboutTitle {
+  font-size: 42px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-family: "Rubik", sans-serif;
+  color: #555;
+}
+
+.aboutText {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-family: "Rubik", sans-serif;
+}
+
+.readMoreButton:hover {
+  background-color: #e43e3e;
+  transform: translateY(-3px);
+}
+
+.missionSection {
+  width: 85%;
+  max-width: 1200px;
+  text-align: center;
+  margin: 70px 0;
+}
+
+.missionTitle {
+  font-size: 32px;
+  font-weight: bold;
+  color: #ff4b4b;
+  margin-bottom: 10px;
+  font-family: "Rubik", sans-serif;
+}
+
+.missionText {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.8;
+}
+
+.carousel {
+  width: 100%;
+  padding-top: 40px;
+}
+
+.slider {
+  width: 80%;
+  margin: auto;
+  height: 250px;
+  display: flex !important;
+  align-items: center;
+  
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  img {
+    width: 230px;
+    height: auto;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .aboutContainer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .imageContainer, .textContainer {
+    width: 100%;
+  }
+
+  .aboutTitle {
+    font-size: 28px;
+  }
+
+  .aboutText, .missionText {
+    font-size: 14px;
+  }
+
+  .readMoreButton {
+    font-size: 14px;
+  }
+
+  .slider {
+    height: 100px;
+  }
+
+  img {
+    width: 100px;
+  }
+}
