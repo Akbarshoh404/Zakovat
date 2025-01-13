@@ -26,6 +26,9 @@ const DashboardNavbar = () => {
         <li className={styles.link}>
           <Link to={`/dashboard/${user._id}/settings`}>Settings</Link>
         </li>
+        <li className={styles.link}>
+          <Link to={`/`}>Exit</Link>
+        </li>
       </ul>
     </div>
   );
