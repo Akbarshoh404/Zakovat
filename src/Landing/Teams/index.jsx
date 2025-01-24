@@ -1,52 +1,63 @@
 import React, { useState, useEffect } from "react";
 import LandingNavbar from "../shared/Layouts/Navbar";
 import LandingFooter from "../shared/Layouts/Footer";
-
 import styles from "./style.module.scss";
-
-import { scoresData } from "../../Data/General Scores";
+import { turnirScores1, turnirScores2 } from "../../Data/Tournament Scores";
 
 const LandingTeams = () => {
   const [search, setSearch] = useState("");
   const [selectedRow, setSelectedRow] = useState(null);
-  const [sortAsc, setSortAsc] = useState(true); // For sorting ascending or descending
+  const [sortAsc, setSortAsc] = useState(true);
 
-  // Calculate score dynamically based on the formula: trueAnswers - penalty
-  const scores = scoresData.map((score) => ({
-    ...score,
-    score: score.trues - score.penalty, // Calculate the score
-  }));
+  // Combine the two arrays and ensure each team appears exactly twice
+  const scores = [...turnirScores1.teams, ...turnirScores2.teams].map(
+    (score, index) => ({
+      ...score,
+      tournament:
+        index < turnirScores1.teams.length ? "Tournament 1" : "Tournament 2", // Mark the tournament
+      false: score.questions - score.trues, // Calculate false answers
+      score: score.trues - score.penalty, // Calculate the total score
+    })
+  );
 
-  // Sorting the scores based on the "score" field
-  const sortedScores = [...scores].sort((a, b) => {
-    return sortAsc ? a.score - b.score : b.score - a.score;
-  });
+  // Filter out teams to ensure each appears exactly twice
+  const uniqueTeams = scores.filter(
+    (team, index, self) =>
+      self.findIndex((t) => t.class === team.class) === index
+  );
 
+  // Sorting function
+  const sortScores = (scores) => {
+    return scores.sort((a, b) =>
+      sortAsc ? a.score - b.score : b.score - a.score
+    );
+  };
+
+  const sortedScores = sortScores(uniqueTeams);
+
+  // Filtered scores based on search
   const filteredScores = sortedScores.filter((score) =>
     score.class.toLowerCase().includes(search.toLowerCase())
   );
 
+  // Handle row click for modal
   const handleRowClick = (score) => {
-    setSelectedRow(score); // Opens the modal with details
+    setSelectedRow(score);
   };
 
   const closeModal = () => {
-    setSelectedRow(null); // Closes the modal
+    setSelectedRow(null);
   };
 
   const toggleSortOrder = () => {
-    setSortAsc((prev) => !prev); // Toggle sort order
+    setSortAsc((prev) => !prev);
   };
 
   // Disable scrolling when modal is open
   useEffect(() => {
-    if (selectedRow) {
-      document.body.style.overflow = "hidden"; // Disable body scroll
-    } else {
-      document.body.style.overflow = "auto"; // Re-enable body scroll
-    }
+    document.body.style.overflow = selectedRow ? "hidden" : "auto";
     return () => {
-      document.body.style.overflow = "auto"; // Clean up when component unmounts
+      document.body.style.overflow = "auto"; // Cleanup on unmount
     };
   }, [selectedRow]);
 
@@ -55,11 +66,11 @@ const LandingTeams = () => {
       <LandingNavbar />
       <div className={styles.section}>
         <div className={styles.container}>
-          <h1 className={styles.title}>Team Scores</h1>
+          <h1 className={styles.title}>Barcha Jamoalar</h1>
           <div className={styles.tableWrapper}>
             <input
               type="text"
-              placeholder="Search by Class..."
+              placeholder="Sinf bilan qidirish"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className={styles.searchBar}
@@ -74,7 +85,7 @@ const LandingTeams = () => {
                   <th>Questions</th>
                   <th>Penalty</th>
                   <th onClick={toggleSortOrder}>
-                    Score{" "}
+                    Score
                     <button className={styles.sortButton}>
                       {sortAsc ? "↑" : "↓"}
                     </button>
@@ -88,7 +99,7 @@ const LandingTeams = () => {
                     onClick={() => handleRowClick(score)}
                     className={styles.row}
                   >
-                    <td>{score.class}</td> {/* Use 'class' here */}
+                    <td>{score.class}</td>
                     <td>{score.liga}</td>
                     <td>{score.trues}</td>
                     <td>{score.false}</td>
@@ -100,6 +111,8 @@ const LandingTeams = () => {
               </tbody>
             </table>
           </div>
+
+          {/* Modal Section */}
           {selectedRow && (
             <div className={styles.overlay}>
               <div className={styles.modal}>

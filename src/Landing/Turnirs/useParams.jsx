@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import {
   turnirScores1,
   turnirScores2,
-  turnirScores3,
 } from "../../Data/Tournament Scores";
 
 const TurnirParams = () => {
@@ -18,8 +17,6 @@ const TurnirParams = () => {
     scoresData = [...turnirScores1.teams];
   } else if (id == 2) {
     scoresData = [...turnirScores2.teams];
-  } else if (id == 3) {
-    scoresData = [...turnirScores3.teams];
   }
 
   // Calculate score dynamically and update false answers
