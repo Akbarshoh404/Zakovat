@@ -331,7 +331,6 @@ export const turnirScores1 = {
   ],
 };
 
-
 export const turnirScores2 = {
   name: "2-Chorak Turnir",
   date: "01.01.2024",
