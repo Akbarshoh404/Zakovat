@@ -17,26 +17,17 @@ const LandingNavbar = () => {
           </Link>
 
           <div className={styles.navigation}>
+            <Link to="/">
+              <p className={styles.navigationP}>Asosiy</p>
+            </Link>
             <Link to="/about">
               <p className={styles.navigationP}>Biz Haqimizda</p>
             </Link>
             <Link to="/teams">
               <p className={styles.navigationP}>Jamoalar</p>
             </Link>
-            <Link to="/participants">
-              <p className={styles.navigationP}>Bilimdonlar</p>
-            </Link>
             <Link to="/turnirs">
               <p className={styles.navigationP}>Turnirlar</p>
-            </Link>
-          </div>
-
-          <div className={styles.navigationButtons}>
-            <Link to="/sign-in">
-              <button className={styles.navigationButton}>Sign In</button>
-            </Link>
-            <Link to="/sign-up">
-              <button className={styles.navigationButton}>Sign Up</button>
             </Link>
           </div>
 
@@ -59,23 +50,17 @@ const LandingNavbar = () => {
             className={styles.drawerWidth}
           >
             <Drawer.Body className={styles.drawer}>
+              <Link to="/" onClick={() => setOpen(false)}>
+                <p className={styles.DrawerNavigationP}>Asosiy</p>
+              </Link>
               <Link to="/about" onClick={() => setOpen(false)}>
                 <p className={styles.DrawerNavigationP}>Biz Haqimizda</p>
               </Link>
               <Link to="/teams" onClick={() => setOpen(false)}>
                 <p className={styles.DrawerNavigationP}>Jamoalar</p>
               </Link>
-              <Link to="/participants" onClick={() => setOpen(false)}>
-                <p className={styles.DrawerNavigationP}>Bilimdonlar</p>
-              </Link>
               <Link to="/turnirs" onClick={() => setOpen(false)}>
                 <p className={styles.DrawerNavigationP}>Turnirlar</p>
-              </Link>
-              <Link to="/sign-in">
-                <button className={styles.DrawerNavigationButton}>Sign In</button>
-              </Link>
-              <Link to="/sign-up">
-                <button className={styles.DrawerNavigationButton}>Sign Up</button>
               </Link>
             </Drawer.Body>
           </Drawer>

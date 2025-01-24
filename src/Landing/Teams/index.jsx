@@ -1,184 +1,141 @@
-import React, { useEffect, useState } from "react";
-import styles from "./style.module.scss";
+import React, { useState, useEffect } from "react";
 import LandingNavbar from "../shared/Layouts/Navbar";
+import LandingFooter from "../shared/Layouts/Footer";
+
+import styles from "./style.module.scss";
+
+import { scoresData } from "../../Data/General Scores";
 
 const LandingTeams = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [sortConfig, setSortConfig] = useState({ key: "name", direction: "asc" });
-  const [selectedTeam, setSelectedTeam] = useState(null);
+  const [selectedRow, setSelectedRow] = useState(null);
+  const [sortAsc, setSortAsc] = useState(true); // For sorting ascending or descending
 
-  useEffect(() => {
-    const fetchTeams = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/teams");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const teams = await response.json();
-        setData(teams);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // Calculate score dynamically based on the formula: trueAnswers - penalty
+  const scores = scoresData.map((score) => ({
+    ...score,
+    score: score.trues - score.penalty, // Calculate the score
+  }));
 
-    fetchTeams();
-  }, []);
-
-  const sortedData = [...data].sort((a, b) => {
-    if (a[sortConfig.key] < b[sortConfig.key]) {
-      return sortConfig.direction === "asc" ? -1 : 1;
-    }
-    if (a[sortConfig.key] > b[sortConfig.key]) {
-      return sortConfig.direction === "asc" ? 1 : -1;
-    }
-    return 0;
+  // Sorting the scores based on the "score" field
+  const sortedScores = [...scores].sort((a, b) => {
+    return sortAsc ? a.score - b.score : b.score - a.score;
   });
 
-  const filteredData = sortedData.filter((team) =>
-    team.name.toLowerCase().includes(search.toLowerCase())
+  const filteredScores = sortedScores.filter((score) =>
+    score.class.toLowerCase().includes(search.toLowerCase())
   );
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentPageData = filteredData.slice(startIndex, startIndex + itemsPerPage);
-
-  const requestSort = (key) => {
-    let direction = "asc";
-    if (sortConfig.key === key && sortConfig.direction === "asc") {
-      direction = "desc";
-    }
-    setSortConfig({ key, direction });
-  };
-
-  const changePage = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
-  const openModal = (team) => {
-    setSelectedTeam(team);
+  const handleRowClick = (score) => {
+    setSelectedRow(score); // Opens the modal with details
   };
 
   const closeModal = () => {
-    setSelectedTeam(null);
+    setSelectedRow(null); // Closes the modal
   };
 
-  const totalTeams = data.length;
-  const averageScore = totalTeams > 0 ? (data.reduce((sum, team) => sum + team.score, 0) / totalTeams).toFixed(2) : 0;
-  const highestScore = totalTeams > 0 ? Math.max(...data.map((team) => team.score)) : 0;
+  const toggleSortOrder = () => {
+    setSortAsc((prev) => !prev); // Toggle sort order
+  };
+
+  // Disable scrolling when modal is open
+  useEffect(() => {
+    if (selectedRow) {
+      document.body.style.overflow = "hidden"; // Disable body scroll
+    } else {
+      document.body.style.overflow = "auto"; // Re-enable body scroll
+    }
+    return () => {
+      document.body.style.overflow = "auto"; // Clean up when component unmounts
+    };
+  }, [selectedRow]);
 
   return (
     <>
       <LandingNavbar />
-      <section className={styles.teamsSection}>
-        <div className={styles.teamsContainer}>
-          <div className={styles.textContainer}>
-            <h2 className={styles.teamsTitle}>Our Teams</h2>
-            <p className={styles.descriptionText}>
-              Here you can find all the teams competing in our tournaments.
-            </p>
-            {loading && <p className={styles.loadingText}>Loading...</p>}
-            {error && <p className={styles.errorText}>Error: {error}</p>}
-          </div>
-
-          {!loading && !error && (
-            <div className={styles.statsContainer}>
-              <p>Total Teams: {totalTeams}</p>
-              <p>Average Score: {averageScore}</p>
-              <p>Highest Score: {highestScore}</p>
-            </div>
-          )}
-
-          <div className={styles.searchContainer}>
+      <div className={styles.section}>
+        <div className={styles.container}>
+          <h1 className={styles.title}>Team Scores</h1>
+          <div className={styles.tableWrapper}>
             <input
               type="text"
-              className={styles.searchInput}
-              placeholder="Search by team name"
+              placeholder="Search by Class..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+              className={styles.searchBar}
             />
-          </div>
-
-          {!loading && !error && (
-            <>
-              <div className={styles.tableContainer}>
-                <table className={styles.customTable}>
-                  <thead>
-                    <tr>
-                      <th onClick={() => requestSort("name")}>
-                        Team Name {sortConfig.key === "name" ? (sortConfig.direction === "asc" ? "↑" : "↓") : ""}
-                      </th>
-                      <th onClick={() => requestSort("grade")}>
-                        Grade {sortConfig.key === "grade" ? (sortConfig.direction === "asc" ? "↑" : "↓") : ""}
-                      </th>
-                      <th onClick={() => requestSort("participants")}>
-                        Participants Count {sortConfig.key === "participants" ? (sortConfig.direction === "asc" ? "↑" : "↓") : ""}
-                      </th>
-                      <th onClick={() => requestSort("trueAnswers")}>
-                        True Answers {sortConfig.key === "trueAnswers" ? (sortConfig.direction === "asc" ? "↑" : "↓") : ""}
-                      </th>
-                      <th onClick={() => requestSort("falseAnswers")}>
-                        False Answers {sortConfig.key === "falseAnswers" ? (sortConfig.direction === "asc" ? "↑" : "↓") : ""}
-                      </th>
-                      <th onClick={() => requestSort("penalty")}>
-                        Penalty {sortConfig.key === "penalty" ? (sortConfig.direction === "asc" ? "↑" : "↓") : ""}
-                      </th>
-                      <th onClick={() => requestSort("score")}>
-                        Score {sortConfig.key === "score" ? (sortConfig.direction === "asc" ? "↑" : "↓") : ""}
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {currentPageData.map((team, index) => (
-                      <tr key={index} onClick={() => openModal(team)}>
-                        <td>{team.name}</td>
-                        <td>{team.grade}</td>
-                        <td>{team.participants.length}</td>
-                        <td>{team.trueAnswers}</td>
-                        <td>{team.falseAnswers}</td>
-                        <td>{team.penalty}</td>
-                        <td>{team.score}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-
-              <div className={styles.pagination}>
-                {Array.from({ length: Math.ceil(filteredData.length / itemsPerPage) }).map((_, index) => (
-                  <button
-                    key={index}
-                    className={styles.pageButton}
-                    onClick={() => changePage(index + 1)}
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Liga</th>
+                  <th>True Answers</th>
+                  <th>False Answers</th>
+                  <th>Questions</th>
+                  <th>Penalty</th>
+                  <th onClick={toggleSortOrder}>
+                    Score{" "}
+                    <button className={styles.sortButton}>
+                      {sortAsc ? "↑" : "↓"}
+                    </button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredScores.map((score) => (
+                  <tr
+                    key={score.id}
+                    onClick={() => handleRowClick(score)}
+                    className={styles.row}
                   >
-                    {index + 1}
-                  </button>
+                    <td>{score.class}</td> {/* Use 'class' here */}
+                    <td>{score.liga}</td>
+                    <td>{score.trues}</td>
+                    <td>{score.false}</td>
+                    <td>{score.questions}</td>
+                    <td>{score.penalty}</td>
+                    <td>{score.score}</td>
+                  </tr>
                 ))}
+              </tbody>
+            </table>
+          </div>
+          {selectedRow && (
+            <div className={styles.overlay}>
+              <div className={styles.modal}>
+                <div className={styles.modalContent}>
+                  <h2>Team Details</h2>
+                  <p>
+                    <strong>Class:</strong> {selectedRow.class}
+                  </p>
+                  <p>
+                    <strong>Liga:</strong> {selectedRow.liga}
+                  </p>
+                  <p>
+                    <strong>True Answers:</strong> {selectedRow.trues}
+                  </p>
+                  <p>
+                    <strong>False Answers:</strong> {selectedRow.false}
+                  </p>
+                  <p>
+                    <strong>Questions:</strong> {selectedRow.questions}
+                  </p>
+                  <p>
+                    <strong>Penalty:</strong> {selectedRow.penalty}
+                  </p>
+                  <p>
+                    <strong>Score:</strong> {selectedRow.score}
+                  </p>
+                  <button onClick={closeModal} className={styles.closeButton}>
+                    Close
+                  </button>
+                </div>
               </div>
-            </>
+            </div>
           )}
         </div>
-      </section>
-
-      {selectedTeam && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modalContent}>
-            <h3>{selectedTeam.name} - Details</h3>
-            <p>Grade: {selectedTeam.grade}</p>
-            <p>Participants: {selectedTeam.participants.join(", ")}</p>
-            <p>True Answers: {selectedTeam.trueAnswers}</p>
-            <p>False Answers: {selectedTeam.falseAnswers}</p>
-            <p>Penalty: {selectedTeam.penalty}</p>
-            <p>Score: {selectedTeam.score}</p>
-            <button className={styles.closeButton} onClick={closeModal}>Close</button>
-          </div>
-        </div>
-      )}
+      </div>
+      <LandingFooter />
     </>
   );
 };
