@@ -46,3 +46,16 @@
 .card:hover {
   transform: translateY(-8px);
 }
+
+.cardImage {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 480px) {
+  .card{
+    padding: 15px;
+  }
+}

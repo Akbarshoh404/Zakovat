@@ -207,7 +207,7 @@ export const turnirScores1 = {
     {
       id: 25,
       class: "9-01",
-      liga: "liga1",
+      liga: "liga3",
       trues: 5,
       questions: 24,
       penalty: 0,
@@ -215,7 +215,7 @@ export const turnirScores1 = {
     {
       id: 26,
       class: "9-02",
-      liga: "liga1",
+      liga: "liga3",
       trues: 8,
       questions: 24,
       penalty: 0,
@@ -223,7 +223,7 @@ export const turnirScores1 = {
     {
       id: 27,
       class: "9-03",
-      liga: "liga1",
+      liga: "liga3",
       trues: 5,
       questions: 24,
       penalty: 0,
@@ -231,7 +231,7 @@ export const turnirScores1 = {
     {
       id: 28,
       class: "9-04",
-      liga: "liga1",
+      liga: "liga3",
       trues: 8,
       questions: 24,
       penalty: 0,
@@ -239,7 +239,7 @@ export const turnirScores1 = {
     {
       id: 29,
       class: "9-05",
-      liga: "liga1",
+      liga: "liga3",
       trues: 2,
       questions: 24,
       penalty: 0,
@@ -541,7 +541,7 @@ export const turnirScores2 = {
     {
       id: 25,
       class: "9-01",
-      liga: "liga1",
+      liga: "liga3",
       trues: 5,
       questions: 24,
       penalty: 0,
@@ -549,7 +549,7 @@ export const turnirScores2 = {
     {
       id: 26,
       class: "9-02",
-      liga: "liga1",
+      liga: "liga3",
       trues: 8,
       questions: 24,
       penalty: 0,
@@ -557,7 +557,7 @@ export const turnirScores2 = {
     {
       id: 27,
       class: "9-03",
-      liga: "liga1",
+      liga: "liga3",
       trues: 5,
       questions: 24,
       penalty: 0,
@@ -565,7 +565,7 @@ export const turnirScores2 = {
     {
       id: 28,
       class: "9-04",
-      liga: "liga1",
+      liga: "liga3",
       trues: 8,
       questions: 24,
       penalty: 0,
@@ -573,7 +573,7 @@ export const turnirScores2 = {
     {
       id: 29,
       class: "9-05",
-      liga: "liga1",
+      liga: "liga3",
       trues: 2,
       questions: 24,
       penalty: 0,
@@ -666,7 +666,7 @@ export const turnirScores2 = {
 };
 
 export const turnirScores3 = {
-  name: "1-Chorak Turnir",
+  name: "3-Chorak Turnir",
   date: "01.01.2024",
 
   teams: [

@@ -10,12 +10,17 @@
 
 .section {
   width: 100%;
-  padding: 150px 0;
+  padding: 125px 0;
 }
 
 .container {
   width: 85%;
   margin: auto;
+
+  h2 {
+    text-align: center;
+    margin: 50px;
+  }
 }
 
 .title {
@@ -166,8 +171,8 @@
   }
 
   /* Hide 'questions' column after 768px */
-  .table th:nth-child(4),
-  .table td:nth-child(4),
+  .table th:nth-child(3),
+  .table td:nth-child(3),
   .table th:nth-child(5),
   .table td:nth-child(5) {
     display: none;
@@ -205,5 +210,9 @@
 
   .closeButton {
     padding: 6px 12px;
+  }
+
+  .title {
+    line-height: 40px;
   }
 }
