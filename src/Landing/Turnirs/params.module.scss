@@ -1,0 +1,209 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
+  color: #0b1e39;
+}
+
+.section {
+  width: 100%;
+  padding: 150px 0;
+}
+
+.container {
+  width: 85%;
+  margin: auto;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #c9a571;
+}
+
+.tableWrapper {
+  margin-top: 20px;
+}
+
+.searchBar {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.searchBar:focus {
+  border-color: #c9a571;
+  box-shadow: 0 0 4px rgba(201, 165, 113, 0.8);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.table th {
+  background-color: #c9a571;
+  color: white;
+  text-transform: uppercase;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #e9f5ff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sortButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-left: 5px;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 500px;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.modalContent {
+  text-align: center;
+}
+
+.modalContent h2 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: #c9a571;
+}
+
+.modalContent p {
+  margin: 5px 0;
+}
+
+.closeButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #c9a571;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background-color: #b48b5b;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark background */
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .tableWrapper {
+    margin-top: 10px;
+  }
+
+  .searchBar {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  /* Hide 'questions' column after 768px */
+  .table th:nth-child(4),
+  .table td:nth-child(4),
+  .table th:nth-child(5),
+  .table td:nth-child(5) {
+    display: none;
+  }
+
+  .modal {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .modalContent h2 {
+    font-size: 1.2rem;
+  }
+
+  .closeButton {
+    padding: 8px 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .table th,
+  .table td {
+    padding: 6px;
+    font-size: 0.8rem;
+  }
+
+  .modalContent p {
+    font-size: 0.9rem;
+  }
+
+  .modal {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .closeButton {
+    padding: 6px 12px;
+  }
+}

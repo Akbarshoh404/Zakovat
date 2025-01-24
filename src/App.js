@@ -6,6 +6,8 @@ import LandingAbout from "./Landing/About";
 import LandingTeams from "./Landing/Teams";
 import LandingTurnirs from "./Landing/Turnirs";
 
+import TurnirParams from "./Landing/Turnirs/useParams";
+
 function App() {
   return (
     <>
@@ -16,6 +18,7 @@ function App() {
         <Route path="/about" element={<LandingAbout />} />
         <Route path="/teams" element={<LandingTeams />} />
         <Route path="/turnirs" element={<LandingTurnirs />} />
+        <Route path="/turnirs/:id" element={<TurnirParams />} />
       </Routes>
     </>
   );
