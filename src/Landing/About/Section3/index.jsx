@@ -7,73 +7,75 @@ const Section3 = () => {
     <>
       <div className={styles.section}>
         <div className={styles.container}>
-          <div className={styles.bigP}>RULES</div>
+          <div className={styles.bigP}>QOIDALAR</div>
 
           <div className={styles.rules}>
             <div className={styles.card}>
               <div className={styles.number}>1</div>
               <p>
-                In the game, each team tries to answer complex questions.
-                Questions are on a variety of topics, and teams must use their
-                quick thinking and knowledge.
+                O'yinda har bir jamoa turli qiyinchilikdagi savollarga 1 daqiqa
+                ichida javob berishga harakat qiladi. Savollar turli mavzularda
+                bo'lib, jamoalar o'zlarining tezkor fikrlashlari va bilimlaridan
+                foydalanishlari kerak.
               </p>
             </div>
 
             <div className={styles.card}>
               <div className={styles.number}>2</div>
               <p>
-                A team of five main players and two reserve players from each
-                class would have to be formed and would discuss the answers
-                together.
+                Har bir sinfdan beshta asosiy va ikkita zaxira o'yinchisidan
+                iborat jamoa tuzilib, javoblarni birgalikda muhokama qilishlari
+                kerak.
               </p>
             </div>
 
             <div className={styles.card}>
               <div className={styles.number}>3</div>
               <p>
-                There are 3 leagues in Zakovat:
-                <br /> • Liga II (grades 5-6) <br />• Liga I (grades 7-8) <br />
-                • Premiere League (grades 9-10-11)
+                Zakovatda 3ta Liga bor:
+                <br /> • Liga II (5-6 - sinflar); <br />• Liga I (7-8 -
+                sinflar);
+                <br />• Oliy liga (9 - 10 - 11 - sinflar).
               </p>
             </div>
 
             <div className={styles.card}>
               <div className={styles.number}>4</div>
               <p>
-                It is forbidden to break and talk loudly. For this, a fine ball
-                is subtracted from your team.
+                Moddiy buyumlarga zarar yetkazish va baland ovozda gapirish
+                ta'qiqlanadi. Aks holda jamoaga 1 ball jarima yoziladi.
               </p>
             </div>
 
             <div className={styles.card}>
               <div className={styles.number}>5</div>
               <p>
-                Give the answer to the paper pickers on time (if more than 3
-                seconds are expected, the answer will not be accepted).
+                Javobni belgilangan vaqt ichida topshirishingiz zarur (agar 3
+                soniyadan ko‘proq vaqt kutilsa, javob qabul qilinmaydi).
               </p>
             </div>
 
             <div className={styles.card}>
               <div className={styles.number}>6</div>
               <p>
-                Teams arriving late from the stated time are prohibited from
-                participating in the game.
+                Belgilangan vaqtdan kechikib kelgan jamoalar o'yinda qatnashish
+                imkoniyatidan mahrum bo'lishadi.
               </p>
             </div>
 
             <div className={styles.card}>
               <div className={styles.number}>7</div>
               <p>
-                Each league game has 2 rounds with different number of questions
-                depending on the type of league.
+                Har bir liga o'yini 2 turdan iborat. O'yindagi savollar soni
+                liga turiga qarab o'zgaradi (16,20,24).
               </p>
             </div>
 
             <div className={styles.card}>
               <div className={styles.number}>8</div>
               <p>
-                Players can only be changed during the 10-minute break between
-                the two rounds.
+                O'yinchilarni faqat ikki raund o'rtasidagi 10 daqiqalik tanaffus
+                vaqtida almashtirish mumkin.
               </p>
             </div>
           </div>

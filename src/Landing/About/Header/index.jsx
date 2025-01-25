@@ -6,9 +6,9 @@ const LandingHomeHeader = () => {
     <>
       <header className={styles.header}>
         <div className={styles.container}>
-          <p className={styles.p1}>About Us</p>
+          <p className={styles.p1}>Biz haqimizda</p>
 
-          <p className={styles.p2}><span>Zakovat</span> in Muhammad al-Khwarizmi Specialized IT School</p>
+          <p className={styles.p2}><span>Zakovat</span> Muhammad al-Xorazmiy nomidagi ixtisoslashtirilgan maktabda</p>
         </div>
       </header>
     </>

@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./style.module.scss";
 
-import img from "../../shared/images/farzona.png";
+import img from "../../shared/images/header.jpg";
 
 const Section2 = () => {
   return (
@@ -11,33 +11,23 @@ const Section2 = () => {
         <div className={styles.container}>
           <div className={styles.left}>
             <div className={styles.card}>
-              <div className={styles.bigP}>OUR VISION</div>
+              <div className={styles.bigP}>Bizning maqsad</div>
 
               <p>
-                Empower students to reach their full potential through healthy
-                competition and innovation. Foster curiosity, critical thinking,
-                and collaboration among young minds. Build a community where
-                knowledge drives success and transformation.
+                Qiziqarli musobaqalar tashkil etish, tanqidiy fikrlashni
+                rivojlantirish, shaxsiy va akademik o'sish uchun imkoniyatlar
+                yaratish orqali o'quvchilarni ilhomlantirish va jalb qilish.
               </p>
             </div>
 
             <div className={styles.card}>
-              <div className={styles.bigP}>OUR MISSION</div>
+              <div className={styles.bigP}>Bizning vazifamiz</div>
 
               <p>
-                To inspire curiosity and foster a love of learning through
-                friendly competition. We believe in empowering individuals to
-                reach their potential.
-              </p>
-            </div>
-
-            <div className={styles.card}>
-              <div className={styles.bigP}>OUR GOAL</div>
-
-              <p>
-                To inspire and engage students by organizing thought-provoking
-                competitions, fostering critical thinking, and creating
-                opportunities for personal and academic growth.
+                Do'stona raqobat orqali "Zakovat"ga qiziqishni uyg'otish va uni
+                o'rganishga bo'lgan muhabbatni rivojlantirish. Biz
+                o'quvchilarning ochilmagan qirralarini kashf etishga yordam
+                beramiz.
               </p>
             </div>
           </div>

@@ -11,7 +11,7 @@ const Section4 = () => {
     <>
       <div className={styles.section}>
         <div className={styles.container}>
-          <div className={styles.bigP}>OUR PARTNERS</div>
+          <div className={styles.bigP}>Bizning Hamkorlar</div>
 
           <div className={styles.partners}>
             <div className={styles.card}>

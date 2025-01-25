@@ -25,55 +25,53 @@ const Section1 = () => {
               </div>
               <div className={styles.img4}>
                 <p className={styles.imgp1}>600+</p>
-                <p className={styles.imgp2}>Participants of Zakovat</p>
+                <p className={styles.imgp2}>Zakovat ishtirokchilari</p>
               </div>
             </div>
           </div>
 
           <div className={styles.right}>
             <p className={styles.p1}>Zakovat</p>
-            <p className={styles.p2}>
-              in Muhammad al-Khwarizmi Specialized IT School
-            </p>
+            <p className={styles.p2}>Muhammad al-Xorazmiy maktabida</p>
             <p className={styles.p3}>
-              We are committed to creating a competitive yet friendly
-              environment for those who seek knowledge and challenge. Our
-              platform allows you to connect with others and show your
-              intellectual prowess through exciting tournaments.
+              Biz bilim va qiyinchiliklarga intilayotganlar uchun
+              raqobatbardosh, ammo do'stona muhit yaratishga intilamiz. Bizning
+              platformamiz sizga boshqalar bilan bog'lanish va qiziqarli
+              o'yinlar orqali intellektual qobiliyatingizni ko'rsatish imkonini
+              beradi.
             </p>
 
             <div className={styles.cards}>
               <div className={styles.card}>
-                <p className={styles.ligaName}>I LIGA</p>
-                <div className={styles.grades}>
-                  <div className={styles.grade}>6th</div>
-
-                  <div className={styles.grade}>5th</div>
-                </div>
-
-                <p className={styles.p4}>Grades</p>
-              </div>
-
-              <div className={styles.card}>
                 <p className={styles.ligaName}>II LIGA</p>
                 <div className={styles.grades}>
-                  <div className={styles.grade}>7th</div>
-                  <div className={styles.grade}>8th</div>
-                  <div className={styles.grade}>9th</div>
+                  <div className={styles.grade}>6</div>
+
+                  <div className={styles.grade}>5</div>
                 </div>
 
-                <p className={styles.p4}>Grades</p>
+                <p className={styles.p4}>Sinflar</p>
               </div>
 
               <div className={styles.card}>
-                <p className={styles.ligaName}>Premiere Liga</p>
+                <p className={styles.ligaName}>I LIGA</p>
                 <div className={styles.grades}>
-                  <div className={styles.grade}>10th</div>
-
-                  <div className={styles.grade}>11th</div>
+                  <div className={styles.grade}>7</div>
+                  <div className={styles.grade}>8</div>
                 </div>
 
-                <p className={styles.p4}>Grades</p>
+                <p className={styles.p4}>Sinflar</p>
+              </div>
+
+              <div className={styles.card}>
+                <p className={styles.ligaName}>OLIY LIGA</p>
+                <div className={styles.grades}>
+                  <div className={styles.grade}>9</div>
+                  <div className={styles.grade}>10</div>
+                  <div className={styles.grade}>11</div>
+                </div>
+
+                <p className={styles.p4}>Sinflar</p>
               </div>
             </div>
           </div>

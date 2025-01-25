@@ -83,17 +83,17 @@ const TurnirParams = () => {
     <table className={styles.table}>
       <thead>
         <tr>
-          <th>Class</th>
-          <th>True Answers</th>
-          <th>False Answers</th>
-          <th>Questions</th>
-          <th>Penalty</th>
+          <th>Sinf</th>
+          <th>To'g'ri</th>
+          <th>Xato</th>
+          <th>Savollar</th>
+          <th>Jarima</th>
           <th
             onClick={() =>
               sortTeams(teams, sortAsc, setSortAsc, setSortedTeams)
             }
           >
-            Score
+            Natija
             <button className={styles.sortButton}>{sortAsc ? "↑" : "↓"}</button>
           </th>
         </tr>
@@ -185,28 +185,28 @@ const TurnirParams = () => {
                 <div className={styles.modalContent}>
                   <h2>Team Details</h2>
                   <p>
-                    <strong>Class:</strong> {selectedRow.class}
+                    <strong>Sinf:</strong> {selectedRow.class}
                   </p>
                   <p>
                     <strong>Liga:</strong> {selectedRow.liga}
                   </p>
                   <p>
-                    <strong>True Answers:</strong> {selectedRow.trues}
+                    <strong>To'g'ri javoblar:</strong> {selectedRow.trues}
                   </p>
                   <p>
-                    <strong>False Answers:</strong> {selectedRow.false}
+                    <strong>Xato javoblar:</strong> {selectedRow.false}
                   </p>
                   <p>
-                    <strong>Questions:</strong> {selectedRow.questions}
+                    <strong>Savollar soni:</strong> {selectedRow.questions}
                   </p>
                   <p>
-                    <strong>Penalty:</strong> {selectedRow.penalty}
+                    <strong>Jarima:</strong> {selectedRow.penalty}
                   </p>
                   <p>
-                    <strong>Score:</strong> {selectedRow.score}
+                    <strong>Natija:</strong> {selectedRow.score}
                   </p>
                   <button onClick={closeModal} className={styles.closeButton}>
-                    Close
+                    Yopish
                   </button>
                 </div>
               </div>

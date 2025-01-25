@@ -19,7 +19,7 @@ const LandingFooter = () => {
             <div
               onClick={() =>
                 handleNavigation(
-                  "https://www.instagram.com/corecl_uz?igsh=M2dqMHViYmRkNGFo"
+                  "https://www.instagram.com/zakovat_alxorazmiy/"
                 )
               }
               className={styles.link}
@@ -32,7 +32,9 @@ const LandingFooter = () => {
             <span className={styles.separator}>X</span>
 
             <div
-              onClick={() => handleNavigation("https://t.me/corecollectionuzb")}
+              onClick={() =>
+                handleNavigation("https://t.me/zakovat_alxorazmiy")
+              }
               className={styles.link}
               aria-label="Telegram"
             >

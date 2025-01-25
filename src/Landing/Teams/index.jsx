@@ -103,28 +103,28 @@ const LandingTeams = () => {
                 <div className={styles.modalContent}>
                   <h2>Team Details</h2>
                   <p>
-                    <strong>Class:</strong> {selectedRow.class}
+                    <strong>Singlar:</strong> {selectedRow.class}
                   </p>
                   <p>
                     <strong>Liga:</strong> {selectedRow.liga}
                   </p>
                   <p>
-                    <strong>True Answers:</strong> {selectedRow.trues}
+                    <strong>To'g'ri:</strong> {selectedRow.trues}
                   </p>
                   <p>
-                    <strong>False Answers:</strong> {selectedRow.falseAnswers}
+                    <strong>Xato:</strong> {selectedRow.falseAnswers}
                   </p>
                   <p>
-                    <strong>Questions:</strong> {selectedRow.questions}
+                    <strong>Savollar:</strong> {selectedRow.questions}
                   </p>
                   <p>
-                    <strong>Penalty:</strong> {selectedRow.penalty}
+                    <strong>Jarima:</strong> {selectedRow.penalty}
                   </p>
                   <p>
-                    <strong>Score:</strong> {selectedRow.score}
+                    <strong>Natija:</strong> {selectedRow.score}
                   </p>
                   <button onClick={closeModal} className={styles.closeButton}>
-                    Close
+                    Yopish
                   </button>
                 </div>
               </div>
