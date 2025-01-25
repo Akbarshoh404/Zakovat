@@ -9,21 +9,32 @@ const LandingTeams = () => {
   const [selectedRow, setSelectedRow] = useState(null);
   const [sortAsc, setSortAsc] = useState(true);
 
-  // Combine the two arrays and ensure each team appears exactly twice
-  const scores = [...turnirScores1.teams, ...turnirScores2.teams].map(
-    (score, index) => ({
-      ...score,
-      tournament:
-        index < turnirScores1.teams.length ? "Tournament 1" : "Tournament 2", // Mark the tournament
-      false: score.questions - score.trues, // Calculate false answers
-      score: score.trues - score.penalty, // Calculate the total score
-    })
-  );
+  // Combine teams from both turnirScores1 and turnirScores2
+  const combinedTeams = [...turnirScores1.teams, ...turnirScores2.teams].reduce(
+    (acc, team) => {
+      // Check if team already exists by class (or teamName)
+      const existingTeam = acc.find((t) => t.class === team.class);
 
-  // Filter out teams to ensure each appears exactly twice
-  const uniqueTeams = scores.filter(
-    (team, index, self) =>
-      self.findIndex((t) => t.class === team.class) === index
+      if (existingTeam) {
+        // Merge teams with the same class (sum up values for penalty, true answers, false answers, questions)
+        existingTeam.trues += team.trues;
+        existingTeam.falseAnswers += team.questions - team.trues;
+        existingTeam.penalty += team.penalty;
+        existingTeam.questions += team.questions;
+        existingTeam.score = existingTeam.trues - existingTeam.penalty; // Recalculate score after merging
+      } else {
+        // Add the new team if not found
+        acc.push({
+          ...team,
+          tournament: team.tournament || "Tournament 1", // Mark the tournament if needed
+          falseAnswers: team.questions - team.trues, // Calculate false answers
+          score: team.trues - team.penalty, // Calculate the total score
+        });
+      }
+
+      return acc;
+    },
+    []
   );
 
   // Sorting function
@@ -33,7 +44,7 @@ const LandingTeams = () => {
     );
   };
 
-  const sortedScores = sortScores(uniqueTeams);
+  const sortedScores = sortScores(combinedTeams);
 
   // Filtered scores based on search
   const filteredScores = sortedScores.filter((score) =>
@@ -95,14 +106,14 @@ const LandingTeams = () => {
               <tbody>
                 {filteredScores.map((score) => (
                   <tr
-                    key={score.id}
+                    key={score.class}
                     onClick={() => handleRowClick(score)}
                     className={styles.row}
                   >
                     <td>{score.class}</td>
                     <td>{score.liga}</td>
                     <td>{score.trues}</td>
-                    <td>{score.false}</td>
+                    <td>{score.falseAnswers}</td>
                     <td>{score.questions}</td>
                     <td>{score.penalty}</td>
                     <td>{score.score}</td>
@@ -128,7 +139,7 @@ const LandingTeams = () => {
                     <strong>True Answers:</strong> {selectedRow.trues}
                   </p>
                   <p>
-                    <strong>False Answers:</strong> {selectedRow.false}
+                    <strong>False Answers:</strong> {selectedRow.falseAnswers}
                   </p>
                   <p>
                     <strong>Questions:</strong> {selectedRow.questions}
