@@ -16,7 +16,9 @@ const Section2 = () => {
               <p>
                 Qiziqarli musobaqalar tashkil etish, tanqidiy fikrlashni
                 rivojlantirish, shaxsiy va akademik o'sish uchun imkoniyatlar
-                yaratish orqali o'quvchilarni ilhomlantirish va jalb qilish.
+                yaratish orqali o'quvchilarni ilhomlantirish. Yoshlarni bilimga
+                boʻlgan intilishlarini qoʻllab-quvvatlash va ularni
+                ragʻbatlantirish.
               </p>
             </div>
 

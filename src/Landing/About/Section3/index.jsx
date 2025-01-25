@@ -13,10 +13,9 @@ const Section3 = () => {
             <div className={styles.card}>
               <div className={styles.number}>1</div>
               <p>
-                O'yinda har bir jamoa turli qiyinchilikdagi savollarga 1 daqiqa
-                ichida javob berishga harakat qiladi. Savollar turli mavzularda
-                bo'lib, jamoalar o'zlarining tezkor fikrlashlari va bilimlaridan
-                foydalanishlari kerak.
+                O'yinda jamoalar o'zlarining tezkor fikrlashlari va bilimlaridan
+                foydalanib turli darajadagi savollarga 1 daqiqa ichida javob
+                berishlari kerak.
               </p>
             </div>
 
@@ -24,8 +23,7 @@ const Section3 = () => {
               <div className={styles.number}>2</div>
               <p>
                 Har bir sinfdan beshta asosiy va ikkita zaxira o'yinchisidan
-                iborat jamoa tuzilib, javoblarni birgalikda muhokama qilishlari
-                kerak.
+                iborat jamoa tuzilib, javoblar birgalikda muhokama qilinadi
               </p>
             </div>
 
