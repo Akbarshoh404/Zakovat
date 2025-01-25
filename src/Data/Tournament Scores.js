@@ -207,7 +207,7 @@ export const turnirScores1 = {
     {
       id: 25,
       class: "9-01",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 5,
       questions: 24,
       penalty: 0,
@@ -215,7 +215,7 @@ export const turnirScores1 = {
     {
       id: 26,
       class: "9-02",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 8,
       questions: 24,
       penalty: 0,
@@ -223,7 +223,7 @@ export const turnirScores1 = {
     {
       id: 27,
       class: "9-03",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 5,
       questions: 24,
       penalty: 0,
@@ -231,7 +231,7 @@ export const turnirScores1 = {
     {
       id: 28,
       class: "9-04",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 8,
       questions: 24,
       penalty: 0,
@@ -239,7 +239,7 @@ export const turnirScores1 = {
     {
       id: 29,
       class: "9-05",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 2,
       questions: 24,
       penalty: 0,
@@ -249,7 +249,7 @@ export const turnirScores1 = {
     {
       id: 30,
       class: "10-01",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 12,
       questions: 24,
       penalty: 0,
@@ -257,7 +257,7 @@ export const turnirScores1 = {
     {
       id: 31,
       class: "10-02",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 7,
       questions: 24,
       penalty: 0,
@@ -265,7 +265,7 @@ export const turnirScores1 = {
     {
       id: 32,
       class: "10-03",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 11,
       questions: 24,
       penalty: 1,
@@ -273,7 +273,7 @@ export const turnirScores1 = {
     {
       id: 33,
       class: "10-04",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 6,
       questions: 24,
       penalty: 0,
@@ -281,7 +281,7 @@ export const turnirScores1 = {
     {
       id: 34,
       class: "10-05",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 15,
       questions: 24,
       penalty: 0,
@@ -291,7 +291,7 @@ export const turnirScores1 = {
     {
       id: 35,
       class: "11-01",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 11,
       questions: 24,
       penalty: 0,
@@ -299,7 +299,7 @@ export const turnirScores1 = {
     {
       id: 36,
       class: "11-02",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 8,
       questions: 24,
       penalty: 0,
@@ -307,7 +307,7 @@ export const turnirScores1 = {
     {
       id: 37,
       class: "11-03",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 10,
       questions: 24,
       penalty: 0,
@@ -315,7 +315,7 @@ export const turnirScores1 = {
     {
       id: 38,
       class: "11-04",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 7,
       questions: 24,
       penalty: 0,
@@ -323,7 +323,7 @@ export const turnirScores1 = {
     {
       id: 39,
       class: "11-05",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 8,
       questions: 24,
       penalty: 0,
@@ -540,7 +540,7 @@ export const turnirScores2 = {
     {
       id: 25,
       class: "9-01",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 5,
       questions: 24,
       penalty: 0,
@@ -548,7 +548,7 @@ export const turnirScores2 = {
     {
       id: 26,
       class: "9-02",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 8,
       questions: 24,
       penalty: 0,
@@ -556,7 +556,7 @@ export const turnirScores2 = {
     {
       id: 27,
       class: "9-03",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 5,
       questions: 24,
       penalty: 0,
@@ -564,7 +564,7 @@ export const turnirScores2 = {
     {
       id: 28,
       class: "9-04",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 8,
       questions: 24,
       penalty: 0,
@@ -572,7 +572,7 @@ export const turnirScores2 = {
     {
       id: 29,
       class: "9-05",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 2,
       questions: 24,
       penalty: 0,
@@ -582,7 +582,7 @@ export const turnirScores2 = {
     {
       id: 30,
       class: "10-01",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 12,
       questions: 24,
       penalty: 0,
@@ -590,7 +590,7 @@ export const turnirScores2 = {
     {
       id: 31,
       class: "10-02",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 7,
       questions: 24,
       penalty: 0,
@@ -598,7 +598,7 @@ export const turnirScores2 = {
     {
       id: 32,
       class: "10-03",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 11,
       questions: 24,
       penalty: 1,
@@ -606,7 +606,7 @@ export const turnirScores2 = {
     {
       id: 33,
       class: "10-04",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 6,
       questions: 24,
       penalty: 0,
@@ -614,7 +614,7 @@ export const turnirScores2 = {
     {
       id: 34,
       class: "10-05",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 15,
       questions: 24,
       penalty: 0,
@@ -624,7 +624,7 @@ export const turnirScores2 = {
     {
       id: 35,
       class: "11-01",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 11,
       questions: 24,
       penalty: 0,
@@ -632,7 +632,7 @@ export const turnirScores2 = {
     {
       id: 36,
       class: "11-02",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 8,
       questions: 24,
       penalty: 0,
@@ -640,7 +640,7 @@ export const turnirScores2 = {
     {
       id: 37,
       class: "11-03",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 10,
       questions: 24,
       penalty: 0,
@@ -648,7 +648,7 @@ export const turnirScores2 = {
     {
       id: 38,
       class: "11-04",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 7,
       questions: 24,
       penalty: 0,
@@ -656,7 +656,7 @@ export const turnirScores2 = {
     {
       id: 39,
       class: "11-05",
-      liga: "liga3",
+      liga: "Oliy",
       trues: 8,
       questions: 24,
       penalty: 0,

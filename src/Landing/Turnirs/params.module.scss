@@ -35,21 +35,6 @@
   margin-top: 20px;
 }
 
-.searchBar {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  outline: none;
-}
-
-.searchBar:focus {
-  border-color: #c9a571;
-  box-shadow: 0 0 4px rgba(201, 165, 113, 0.8);
-}
-
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -215,4 +200,22 @@
   .title {
     line-height: 40px;
   }
+}
+
+.carousel {
+  margin-bottom: 40px;
+}
+
+.carouselImage {
+  width: 100%;
+  border-radius: 45px;
+  object-fit: cover;
+  height: 700px;
+  margin: auto !important;
+  padding: 20px;
+}
+
+.slick-prev,
+.slick-next {
+  z-index: 1; /* To make sure arrows appear above images */
 }

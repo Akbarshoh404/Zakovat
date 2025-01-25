@@ -3,10 +3,27 @@ import styles from "./params.module.scss";
 import LandingNavbar from "../shared/Layouts/Navbar";
 import LandingFooter from "../shared/Layouts/Footer";
 import { useParams } from "react-router-dom";
-import {
-  turnirScores1,
-  turnirScores2,
-} from "../../Data/Tournament Scores";
+import Slider from "react-slick"; // Import Slider from react-slick
+import { turnirScores1, turnirScores2 } from "../../Data/Tournament Scores";
+
+import turnir1img1 from "../shared/images/1/1.jpg";
+import turnir1img2 from "../shared/images/1/2.jpg";
+import turnir1img3 from "../shared/images/1/3.jpg";
+import turnir1img4 from "../shared/images/1/4.jpg";
+import turnir1img5 from "../shared/images/1/5.jpg";
+import turnir1img6 from "../shared/images/1/6.jpg";
+import turnir1img7 from "../shared/images/1/7.jpg";
+
+import turnir2img1 from "../shared/images/2/1.jpg";
+import turnir2img2 from "../shared/images/2/2.jpg";
+import turnir2img3 from "../shared/images/2/3.jpg";
+import turnir2img4 from "../shared/images/2/4.jpg";
+import turnir2img5 from "../shared/images/2/5.jpg";
+import turnir2img6 from "../shared/images/2/6.jpg";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 const TurnirParams = () => {
   const { id } = useParams();
@@ -29,7 +46,7 @@ const TurnirParams = () => {
   // Separate teams by liga
   const liga1Teams = scores.filter((score) => score.liga === "liga1");
   const liga2Teams = scores.filter((score) => score.liga === "liga2");
-  const liga3Teams = scores.filter((score) => score.liga === "liga3");
+  const liga3Teams = scores.filter((score) => score.liga === "Oliy");
 
   // Sorting state for each liga
   const [sortAsc1, setSortAsc1] = useState(true);
@@ -100,12 +117,54 @@ const TurnirParams = () => {
     </table>
   );
 
+  const images =
+    id == 1
+      ? [
+          turnir1img1,
+          turnir1img2,
+          turnir1img3,
+          turnir1img4,
+          turnir1img5,
+          turnir1img7,
+        ]
+      : [
+          turnir2img2,
+          turnir2img3,
+          turnir2img4,
+          turnir2img5,
+          turnir2img6,
+        ];
+
+  const carouselSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
+
   return (
     <>
       <LandingNavbar />
       <div className={styles.section}>
         <div className={styles.container}>
           <h1 className={styles.title}>Zakovat {id} - mavsum natijalari</h1>
+
+          <div className={styles.carousel}>
+            <Slider {...carouselSettings}>
+              {images.map((img, index) => (
+                <div key={index}>
+                  <img
+                    src={img}
+                    alt={`Turnir ${id} Image ${index + 1}`}
+                    className={styles.carouselImage}
+                  />
+                </div>
+              ))}
+            </Slider>
+          </div>
 
           {/* Liga1 Table */}
           <h2>Liga 1</h2>
@@ -116,7 +175,7 @@ const TurnirParams = () => {
           {renderTable(sortedLiga2, 2, sortAsc2, setSortAsc2, setSortedLiga2)}
 
           {/* Liga3 Table */}
-          <h2>Liga 3</h2>
+          <h2>Oliy Liga</h2>
           {renderTable(sortedLiga3, 3, sortAsc3, setSortAsc3, setSortedLiga3)}
 
           {/* Modal for Team Details */}

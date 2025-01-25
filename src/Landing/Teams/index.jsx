@@ -7,28 +7,23 @@ import { turnirScores1, turnirScores2 } from "../../Data/Tournament Scores";
 const LandingTeams = () => {
   const [search, setSearch] = useState("");
   const [selectedRow, setSelectedRow] = useState(null);
-  const [sortAsc, setSortAsc] = useState(true);
 
-  // Combine teams from both turnirScores1 and turnirScores2
   const combinedTeams = [...turnirScores1.teams, ...turnirScores2.teams].reduce(
     (acc, team) => {
-      // Check if team already exists by class (or teamName)
       const existingTeam = acc.find((t) => t.class === team.class);
 
       if (existingTeam) {
-        // Merge teams with the same class (sum up values for penalty, true answers, false answers, questions)
         existingTeam.trues += team.trues;
         existingTeam.falseAnswers += team.questions - team.trues;
         existingTeam.penalty += team.penalty;
         existingTeam.questions += team.questions;
-        existingTeam.score = existingTeam.trues - existingTeam.penalty; // Recalculate score after merging
+        existingTeam.score = existingTeam.trues - existingTeam.penalty;
       } else {
-        // Add the new team if not found
         acc.push({
           ...team,
-          tournament: team.tournament || "Tournament 1", // Mark the tournament if needed
-          falseAnswers: team.questions - team.trues, // Calculate false answers
-          score: team.trues - team.penalty, // Calculate the total score
+          tournament: team.tournament || "Tournament 1",
+          falseAnswers: team.questions - team.trues,
+          score: team.trues - team.penalty,
         });
       }
 
@@ -37,21 +32,10 @@ const LandingTeams = () => {
     []
   );
 
-  // Sorting function
-  const sortScores = (scores) => {
-    return scores.sort((a, b) =>
-      sortAsc ? a.score - b.score : b.score - a.score
-    );
-  };
-
-  const sortedScores = sortScores(combinedTeams);
-
-  // Filtered scores based on search
-  const filteredScores = sortedScores.filter((score) =>
+  const filteredScores = combinedTeams.filter((score) =>
     score.class.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Handle row click for modal
   const handleRowClick = (score) => {
     setSelectedRow(score);
   };
@@ -60,15 +44,10 @@ const LandingTeams = () => {
     setSelectedRow(null);
   };
 
-  const toggleSortOrder = () => {
-    setSortAsc((prev) => !prev);
-  };
-
-  // Disable scrolling when modal is open
   useEffect(() => {
     document.body.style.overflow = selectedRow ? "hidden" : "auto";
     return () => {
-      document.body.style.overflow = "auto"; // Cleanup on unmount
+      document.body.style.overflow = "auto";
     };
   }, [selectedRow]);
 
@@ -89,18 +68,13 @@ const LandingTeams = () => {
             <table className={styles.table}>
               <thead>
                 <tr>
-                  <th>Class</th>
+                  <th>Sinf</th>
                   <th>Liga</th>
-                  <th>True Answers</th>
-                  <th>False Answers</th>
-                  <th>Questions</th>
-                  <th>Penalty</th>
-                  <th onClick={toggleSortOrder}>
-                    Score
-                    <button className={styles.sortButton}>
-                      {sortAsc ? "↑" : "↓"}
-                    </button>
-                  </th>
+                  <th>To'g'ri</th>
+                  <th>Xato</th>
+                  <th>Savollar</th>
+                  <th>Jarima</th>
+                  <th>Natija</th>
                 </tr>
               </thead>
               <tbody>
@@ -123,7 +97,6 @@ const LandingTeams = () => {
             </table>
           </div>
 
-          {/* Modal Section */}
           {selectedRow && (
             <div className={styles.overlay}>
               <div className={styles.modal}>
