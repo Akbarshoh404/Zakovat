@@ -62,6 +62,8 @@
 @media (max-width: 600px) {
   .p1{
     font-size: 70px;
+    text-align: center;
+    line-height: 90px;
   }
 
   .p2{
@@ -72,6 +74,8 @@
 @media (max-width: 370px) {
   .p1{
     font-size: 50px;
+    text-align: center !important;
+    line-height: 70px;
   }
 
   .p2{
