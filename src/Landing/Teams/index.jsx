@@ -101,7 +101,7 @@ const LandingTeams = () => {
             <div className={styles.overlay}>
               <div className={styles.modal}>
                 <div className={styles.modalContent}>
-                  <h2>Team Details</h2>
+                  <h2>Jamoa Natijalari</h2>
                   <p>
                     <strong>Singlar:</strong> {selectedRow.class}
                   </p>
