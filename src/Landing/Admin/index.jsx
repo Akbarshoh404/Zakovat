@@ -3,26 +3,38 @@ import LandingNavbar from "../shared/Layouts/Navbar";
 import LandingFooter from "../shared/Layouts/Footer";
 import styles from "./style.module.scss";
 import { toast } from "react-hot-toast";
+import { supabase } from "../../config/supabaseClient";
 
 const AdminPanel = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [teams, setTeams] = useState([]);
 
-  const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbxSkydedbmPWLqW5zZwJtytIEJRYKVC-BSja5u0JqxRi78u1qgO2IB_xS0dwdFm0j9J4g/exec";
-
   // Load teams
   useEffect(() => {
     if (isAuthenticated) {
-      fetch(GOOGLE_SHEETS_URL)
-        .then(res => res.json())
-        .then(data => {
-          setTeams(data);
-        })
-        .catch(err => {
-          console.error(err);
+      const fetchTeams = async () => {
+        const { data, error } = await supabase
+          .from('teams')
+          .select('*')
+          .order('registration_date', { ascending: false });
+        
+        if (error) {
+          console.error(error);
           toast.error("Ma'lumotlarni yuklashda xatolik!");
-        });
+        } else {
+          // Format for UI
+          const formatted = data.map(t => ({
+            id: t.id,
+            teamClass: t.team_class,
+            mainMembers: t.main_members || [],
+            extraMembers: t.extra_members || [],
+            registrationDate: t.registration_date
+          }));
+          setTeams(formatted);
+        }
+      };
+      fetchTeams();
     }
   }, [isAuthenticated]);
 

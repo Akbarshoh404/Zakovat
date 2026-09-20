@@ -4,6 +4,7 @@ import LandingFooter from "../shared/Layouts/Footer";
 import styles from "./style.module.scss";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { supabase } from "../../config/supabaseClient";
 
 const LandingRegister = () => {
   const navigate = useNavigate();
@@ -62,24 +63,26 @@ const LandingRegister = () => {
       teamClass: formData.teamClass,
       mainMembers: formData.mainMembers.filter(m => m.trim() !== ""),
       extraMembers: formData.extraMembers.filter(m => m.trim() !== "")
-    };
-
     try {
-      // POST to Google Sheets
-      await fetch(GOOGLE_SHEETS_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain",
-        },
-        body: JSON.stringify(newTeam),
-      });
+      const { data, error } = await supabase
+        .from('teams')
+        .insert([
+          { 
+            id: newTeam.id,
+            team_class: newTeam.teamClass,
+            main_members: newTeam.mainMembers,
+            extra_members: newTeam.extraMembers,
+            registration_date: new Date().toISOString()
+          }
+        ]);
+
+      if (error) throw error;
       
       toast.success("Jamoa muvaffaqiyatli ro'yxatdan o'tdi!", { id: loadingToast });
       navigate("/teams");
     } catch (error) {
       console.error(error);
-      toast.error("Tarmoq xatosi. Qaytadan urinib ko'ring.", { id: loadingToast });
+      toast.error(`Xatolik: ${error.message || "Tarmoq xatosi"}`, { id: loadingToast });
     } finally {
       setIsSubmitting(false);
     }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LandingNavbar from "../shared/Layouts/Navbar";
+import { supabase } from "../../config/supabaseClient";
 import LandingFooter from "../shared/Layouts/Footer";
 import styles from "./style.module.scss";
 import { useLanguage } from "../../context/LanguageContext";
@@ -45,24 +46,26 @@ const LandingTeams = () => {
 
   const [registeredTeams, setRegisteredTeams] = useState([]);
 
-  const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbxSkydedbmPWLqW5zZwJtytIEJRYKVC-BSja5u0JqxRi78u1qgO2IB_xS0dwdFm0j9J4g/exec";
-
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const res = await fetch(GOOGLE_SHEETS_URL);
-        const data = await res.json();
+        const { data, error } = await supabase
+          .from('teams')
+          .select('*')
+          .order('registration_date', { ascending: false });
+
+        if (error) throw error;
         
         const formatted = data.map(t => ({
-          class: t.teamClass,
+          class: t.team_class,
           liga: "Noma'lum",
           trues: 0,
           falseAnswers: 0,
           questions: 0,
           penalty: 0,
           score: 0,
-          mainMembers: t.mainMembers,
-          extraMembers: t.extraMembers
+          mainMembers: t.main_members,
+          extraMembers: t.extra_members
         }));
         setRegisteredTeams(formatted);
       } catch (err) {
