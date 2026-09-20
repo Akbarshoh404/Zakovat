@@ -37,8 +37,6 @@ const LandingRegister = () => {
   };
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbxSkydedbmPWLqW5zZwJtytIEJRYKVC-BSja5u0JqxRi78u1qgO2IB_xS0dwdFm0j9J4g/exec";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,7 +64,7 @@ const LandingRegister = () => {
     };
 
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('teams')
         .insert([
           { 
