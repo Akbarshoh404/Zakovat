@@ -63,6 +63,8 @@ const LandingRegister = () => {
       teamClass: formData.teamClass,
       mainMembers: formData.mainMembers.filter(m => m.trim() !== ""),
       extraMembers: formData.extraMembers.filter(m => m.trim() !== "")
+    };
+
     try {
       const { data, error } = await supabase
         .from('teams')
