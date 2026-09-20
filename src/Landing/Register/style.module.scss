@@ -98,7 +98,7 @@
 
 .container {
   width: 90%;
-  max-width: 680px;
+  max-width: 860px;
   margin: auto;
   position: relative;
   z-index: 2;
@@ -167,7 +167,7 @@
   width: 100%;
   padding: 18px 24px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   border: 2px solid var(--rule);
   border-radius: 12px;
   background: var(--surface-2);
@@ -176,11 +176,17 @@
   cursor: pointer;
   appearance: none;
   transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+
+  &:hover {
+    background: var(--surface);
+    border-color: var(--ink-3);
+  }
 
   &:focus {
     border-color: var(--ink);
     background: var(--surface);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
   }
 }
 
@@ -191,6 +197,12 @@
   transform: translateY(-50%);
   color: var(--ink-2);
   pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+.select:focus + .selectIcon {
+  transform: translateY(-50%) rotate(180deg);
+  color: var(--ink);
 }
 
 .membersSection {
@@ -232,7 +244,8 @@
 
 .inputsGrid {
   display: grid;
-  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 32px;
 }
 
 .inputWrap {
@@ -329,6 +342,12 @@
 
   &:active {
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .inputsGrid {
+    grid-template-columns: 1fr;
   }
 }
 
