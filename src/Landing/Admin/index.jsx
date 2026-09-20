@@ -8,24 +8,19 @@ const AdminPanel = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [teams, setTeams] = useState([]);
-  const [editingTeam, setEditingTeam] = useState(null);
 
   const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbxSkydedbmPWLqW5zZwJtytIEJRYKVC-BSja5u0JqxRi78u1qgO2IB_xS0dwdFm0j9J4g/exec";
-  const [loading, setLoading] = useState(false);
 
   // Load teams
   useEffect(() => {
     if (isAuthenticated) {
-      setLoading(true);
       fetch(GOOGLE_SHEETS_URL)
         .then(res => res.json())
         .then(data => {
           setTeams(data);
-          setLoading(false);
         })
         .catch(err => {
           console.error(err);
-          setLoading(false);
           toast.error("Ma'lumotlarni yuklashda xatolik!");
         });
     }

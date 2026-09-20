@@ -44,7 +44,6 @@ const LandingTeams = () => {
   };
 
   const [registeredTeams, setRegisteredTeams] = useState([]);
-  const [loadingTeams, setLoadingTeams] = useState(true);
 
   const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbxSkydedbmPWLqW5zZwJtytIEJRYKVC-BSja5u0JqxRi78u1qgO2IB_xS0dwdFm0j9J4g/exec";
 
@@ -68,8 +67,6 @@ const LandingTeams = () => {
         setRegisteredTeams(formatted);
       } catch (err) {
         console.error("Failed to load teams:", err);
-      } finally {
-        setLoadingTeams(false);
       }
     };
     
