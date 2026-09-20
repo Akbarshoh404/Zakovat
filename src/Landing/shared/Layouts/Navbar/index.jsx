@@ -61,7 +61,7 @@ const LandingNavbar = () => {
             <img src={logo} alt="Zakovat" className={styles.logo} />
           </Link>
 
-          <ul className={styles.links} role="list">
+          <ul className={styles.links}>
             {NAV_LINKS.map(({ to, label }) => (
               <li key={to}>
                 <Link
@@ -104,7 +104,7 @@ const LandingNavbar = () => {
 
       {/* Mobile overlay */}
       <div className={`${styles.overlay} ${menuOpen ? styles.overlayOpen : ""}`} aria-hidden={!menuOpen}>
-        <ul className={styles.overlayLinks} role="list">
+        <ul className={styles.overlayLinks}>
           {NAV_LINKS.map(({ to, label }, i) => (
             <li key={to} style={{ transitionDelay: menuOpen ? `${i * 60 + 80}ms` : "0ms" }}>
               <Link

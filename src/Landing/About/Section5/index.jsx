@@ -30,7 +30,7 @@ const Section5 = () => {
           <h2 className={styles.heading}>{t("members_title")}</h2>
         </div>
 
-        <ul className={styles.grid} role="list">
+        <ul className={styles.grid}>
           {MEMBERS.map((m, i) => (
             <li
               key={i}
