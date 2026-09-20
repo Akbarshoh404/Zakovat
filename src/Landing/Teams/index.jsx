@@ -43,8 +43,26 @@ const LandingTeams = () => {
     }, []).sort((a, b) => b.score - a.score);
   };
 
+  const [registeredTeams, setRegisteredTeams] = useState([]);
+
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("registeredTeams") || "[]");
+    const formatted = saved.map(t => ({
+      class: t.teamClass,
+      liga: "Noma'lum",
+      trues: 0,
+      falseAnswers: 0,
+      questions: 0,
+      penalty: 0,
+      score: 0,
+      mainMembers: t.mainMembers,
+      extraMembers: t.extraMembers
+    }));
+    setRegisteredTeams(formatted);
+  }, []);
+
   const ACADEMIC_YEARS = [
-    { year: "2026/2027", teams: [] },
+    { year: "2026/2027", teams: registeredTeams },
     { year: "2025/2026", teams: [] },
     { 
       year: "2024/2025", 
@@ -178,6 +196,28 @@ const LandingTeams = () => {
                   </div>
                 ))}
               </div>
+
+              {(selectedRow.mainMembers || selectedRow.extraMembers) && (
+                <div className={styles.membersListBlock}>
+                  <h3 className={styles.membersListTitle}>Jamoa a'zolari</h3>
+                  {selectedRow.mainMembers && selectedRow.mainMembers.filter(Boolean).length > 0 && (
+                    <div className={styles.membersGroup}>
+                      <span className={styles.membersGroupLabel}>Asosiy:</span>
+                      <ul className={styles.membersUl}>
+                        {selectedRow.mainMembers.filter(Boolean).map((m, i) => <li key={i}>{m}</li>)}
+                      </ul>
+                    </div>
+                  )}
+                  {selectedRow.extraMembers && selectedRow.extraMembers.filter(Boolean).length > 0 && (
+                    <div className={styles.membersGroup}>
+                      <span className={styles.membersGroupLabel}>Zaxira:</span>
+                      <ul className={styles.membersUl}>
+                        {selectedRow.extraMembers.filter(Boolean).map((m, i) => <li key={i}>{m}</li>)}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         )}

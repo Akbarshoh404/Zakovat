@@ -1,0 +1,155 @@
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.header {
+  padding: 160px 0 80px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+}
+
+.headerInner {
+  width: 90%;
+  max-width: 1280px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+  align-items: center;
+}
+
+.heading {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--ink-2);
+}
+
+.content {
+  padding: 80px 0 160px;
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+}
+
+.form {
+  background: var(--surface);
+  padding: 48px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.select, .input {
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    border-color: var(--ink);
+  }
+}
+
+.membersSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.inputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.numberBadge {
+  position: absolute;
+  left: 16px;
+  width: 24px;
+  height: 24px;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.extraBadge {
+  background: var(--ink-3);
+}
+
+.inputWrap .input {
+  padding-left: 56px;
+}
+
+.submitBtn {
+  margin-top: 16px;
+  background: var(--ink);
+  color: var(--bg);
+  border: none;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+@media (max-width: 600px) {
+  .form {
+    padding: 24px;
+  }
+  .header {
+    padding: 120px 0 60px;
+  }
+}

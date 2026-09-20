@@ -32,6 +32,7 @@ const LandingNavbar = () => {
     { to: "/about",   label: t("nav_about") },
     { to: "/teams",   label: t("nav_teams") },
     { to: "/turnirs", label: t("nav_turnirs") },
+    { to: "/register", label: t("nav_register") || "Register" },
   ];
 
   useEffect(() => {

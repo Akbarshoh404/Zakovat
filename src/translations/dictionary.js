@@ -2,10 +2,11 @@ export const dictionary = {
   uz: {
     // Nav & Footer
     nav_home: "Asosiy",
-    nav_about: "Biz haqimizda",
+    nav_about: "Biz Haqimizda",
     nav_teams: "Jamoalar",
     nav_turnirs: "Turnirlar",
-    footer_tagline: "Zakovat — Muhammad al-Xorazmiy maktabi. Bilim eng kuchli qurol.",
+    nav_register: "Ro'yxatdan o'tish",
+    footer_tagline: "Zakovat — Muhammad al-Xorazmiy maktabi. Bilim — eng qudratli qurol.",
     footer_social: "Ijtimoiy tarmoqlar",
     footer_rights: "Barcha huquqlar himoyalangan.",
     
@@ -78,7 +79,8 @@ export const dictionary = {
     nav_about: "О нас",
     nav_teams: "Команды",
     nav_turnirs: "Турниры",
-    footer_tagline: "Заковат — школа имени Мухаммада аль-Хорезми. Знание — сильнейшее оружие.",
+    nav_register: "Регистрация",
+    footer_tagline: "Заковат — школа Аль-Хорезми. Знание — самое сильное оружие.",
     footer_social: "Социальные сети",
     footer_rights: "Все права защищены.",
     
@@ -145,6 +147,7 @@ export const dictionary = {
     nav_about: "About Us",
     nav_teams: "Teams",
     nav_turnirs: "Tournaments",
+    nav_register: "Register",
     footer_tagline: "Zakovat — Muhammad al-Khwarizmi school. Knowledge is the most powerful weapon.",
     footer_social: "Social Media",
     footer_rights: "All rights reserved.",
