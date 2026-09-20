@@ -128,7 +128,15 @@ const LandingRegister = () => {
                         <div 
                           key={c} 
                           className={`${styles.dropdownItem} ${formData.teamClass === c ? styles.dropdownItemSelected : ''}`}
-                          onClick={() => {
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setFormData({ ...formData, teamClass: c });
+                            setDropdownOpen(false);
+                          }}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
                             setFormData({ ...formData, teamClass: c });
                             setDropdownOpen(false);
                           }}
