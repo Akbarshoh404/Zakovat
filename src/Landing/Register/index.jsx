@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LandingNavbar from "../shared/Layouts/Navbar";
 import LandingFooter from "../shared/Layouts/Footer";
 import styles from "./style.module.scss";

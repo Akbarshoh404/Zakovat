@@ -6,6 +6,7 @@ import LandingTeams from "./Landing/Teams";
 import LandingTurnirs from "./Landing/Turnirs";
 import TurnirParams from "./Landing/Turnirs/useParams";
 import LandingRegister from "./Landing/Register";
+import AdminPanel from "./Landing/Admin";
 
 import { Toaster } from "react-hot-toast";
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/turnirs" element={<LandingTurnirs />} />
         <Route path="/turnirs/:id" element={<TurnirParams />} />
         <Route path="/register" element={<LandingRegister />} />
+        <Route path="/admin" element={<AdminPanel />} />
       </Routes>
     </>
   );
