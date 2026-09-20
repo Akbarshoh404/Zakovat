@@ -74,6 +74,9 @@ const LandingTurnirs = () => {
                     >
                       <div className={styles.imgWrap}>
                         <img src={turnir.image} alt={turnir.title} />
+                        <div className={styles.badgeLeft}>
+                          MEROS
+                        </div>
                         <div className={styles.badge}>
                           {turnir.status === "completed" ? t("status_completed") : t("status_upcoming")}
                         </div>

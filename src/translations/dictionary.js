@@ -39,7 +39,7 @@ export const dictionary = {
     rule_8: "O'yinchilarni faqat raundlar orasidagi 10 daqiqalik tanaffusda almashtirish mumkin.",
 
     // About - Headers & Members
-    about_header_label: "Biz haqimizda",
+    back_btn: "Ortga", about_header_label: "Biz haqimizda",
     about_header_title: "Zakovat —",
     about_header_sub: "intellekt va bilim klubi",
     about_header_body: "Muhammad al-Xorazmiy nomidagi ixtisoslashtirilgan maktabda 2024-yildan faoliyat yuritadi.",
@@ -175,7 +175,7 @@ export const dictionary = {
     rule_7: "Each league game consists of 2 rounds — number of questions: 16, 20, or 24.",
     rule_8: "Players can only be substituted during the 10-minute break between rounds.",
 
-    about_header_label: "About Us",
+    back_btn: "Back", about_header_label: "About Us",
     about_header_title: "Zakovat —",
     about_header_sub: "club of intellect and knowledge",
     about_header_body: "Operating at the Muhammad al-Khwarizmi specialized school since 2024.",

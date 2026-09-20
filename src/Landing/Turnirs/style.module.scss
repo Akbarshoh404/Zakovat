@@ -93,73 +93,6 @@
   color: var(--ink-3);
 }
 
-  span {
-    display: block;
-    transform: translateY(100%);
-    opacity: 0;
-  }
-}
-
-.sectionVis .heading span {
-  animation: slideUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-@keyframes slideUp {
-  to { transform: translateY(0); opacity: 1; }
-}
-
-.sub {
-  font-size: 18px;
-  color: var(--ink-2);
-  max-width: 480px;
-  line-height: 1.6;
-  opacity: 0;
-  transform: translateY(16px);
-}
-
-.sectionVis .sub {
-  animation: fadeUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
-}
-
-.section {
-  padding: 0 0 160px;
-  width: 90%;
-  max-width: 1280px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 120px;
-}
-
-.yearBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-  border-top: 1px solid var(--rule);
-  padding-top: 48px;
-}
-
-.yearHeader {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-}
-
-.yearTitle {
-  font-size: 3rem;
-  font-weight: 800;
-  color: var(--ink);
-  letter-spacing: -0.04em;
-}
-
-.yearSub {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
 .emptyState {
   padding: 48px 0;
   color: var(--ink-3);
@@ -210,10 +143,7 @@
   }
 }
 
-.upcoming {
-  opacity: 0.5;
-  cursor: default;
-}
+.upcoming { opacity: 0.8; cursor: default; filter: grayscale(100%); }
 
 .meta {
   display: flex;
@@ -247,6 +177,18 @@
   padding: 6px 12px;
 }
 
+.badgeLeft {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 @media (max-width: 900px) {
   .grid { grid-template-columns: 1fr 1fr; }
 }
@@ -260,10 +202,10 @@
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
+}
 
 @keyframes scaleIn {
   from { opacity: 0; transform: scale(0.95); }
   to   { opacity: 1; transform: scale(1); }
 }
-
 

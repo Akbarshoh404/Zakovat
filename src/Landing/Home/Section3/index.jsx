@@ -19,7 +19,7 @@ const Section3 = ({ isAbout }) => {
   ];
 
   return (
-    <section className={`${styles.section} ${styles.aboutRules}`} ref={ref}>
+    <section className={`${styles.section} ${styles.aboutRules} ${isAbout ? styles.aboutRulesBig : ""}`} ref={ref}>
       <div className={styles.inner}>
         <div className={`${styles.header} ${vis ? styles.headerVis : ""}`}>
           <span className="label">{t("rules_label")}</span>

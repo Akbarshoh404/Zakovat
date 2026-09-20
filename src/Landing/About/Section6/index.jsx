@@ -25,7 +25,10 @@ const Section6 = () => {
     <section className={styles.section} ref={ref}>
       <div className={styles.inner}>
         <div className={`${styles.hd} ${vis ? styles.hdVis : ""}`}>
-          <span className="label">{t("founders_label")}</span>
+          <div className={styles.stylishBadge}>
+            <span className={styles.dot}></span>
+            {t("founders_label")}
+          </div>
           <h2 className={styles.heading}>{t("founders_title")}</h2>
         </div>
 

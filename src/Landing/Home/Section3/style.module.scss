@@ -98,6 +98,17 @@
   margin-top: 24px;
 }
 
+.aboutRulesBig .num {
+  width: 140px;
+  height: 140px;
+  font-size: 4rem;
+}
+
+.aboutRulesBig .text {
+  font-size: 22px;
+  margin-top: 32px;
+}
+
 @media (max-width: 900px) {
   .list { grid-template-columns: 1fr; row-gap: 48px; }
   .section { padding: 100px 0; }
@@ -105,7 +116,10 @@
 
 @media (max-width: 480px) {
   .aboutRules .num { width: 64px; height: 64px; font-size: 2rem; }
+  .aboutRulesBig .num { width: 80px; height: 80px; font-size: 2.5rem; }
 }
+
+
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
@@ -116,5 +130,6 @@
   from { opacity: 0; transform: scale(0.95); }
   to   { opacity: 1; transform: scale(1); }
 }
+
 
 
