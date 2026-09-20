@@ -10,11 +10,24 @@ const AdminPanel = () => {
   const [teams, setTeams] = useState([]);
   const [editingTeam, setEditingTeam] = useState(null);
 
+  const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbxSkydedbmPWLqW5zZwJtytIEJRYKVC-BSja5u0JqxRi78u1qgO2IB_xS0dwdFm0j9J4g/exec";
+  const [loading, setLoading] = useState(false);
+
   // Load teams
   useEffect(() => {
     if (isAuthenticated) {
-      const saved = JSON.parse(localStorage.getItem("registeredTeams") || "[]");
-      setTeams(saved);
+      setLoading(true);
+      fetch(GOOGLE_SHEETS_URL)
+        .then(res => res.json())
+        .then(data => {
+          setTeams(data);
+          setLoading(false);
+        })
+        .catch(err => {
+          console.error(err);
+          setLoading(false);
+          toast.error("Ma'lumotlarni yuklashda xatolik!");
+        });
     }
   }, [isAuthenticated]);
 
@@ -26,23 +39,6 @@ const AdminPanel = () => {
     } else {
       toast.error("Parol noto'g'ri!");
     }
-  };
-
-  const handleDelete = (id) => {
-    if (window.confirm("Bu jamoani o'chirishga ishonchingiz komilmi?")) {
-      const updated = teams.filter(t => t.id !== id);
-      setTeams(updated);
-      localStorage.setItem("registeredTeams", JSON.stringify(updated));
-      toast.success("Jamoa o'chirildi!");
-    }
-  };
-
-  const saveEdit = () => {
-    const updated = teams.map(t => t.id === editingTeam.id ? editingTeam : t);
-    setTeams(updated);
-    localStorage.setItem("registeredTeams", JSON.stringify(updated));
-    setEditingTeam(null);
-    toast.success("O'zgarishlar saqlandi!");
   };
 
   if (!isAuthenticated) {
@@ -118,8 +114,7 @@ const AdminPanel = () => {
                         </td>
                         <td>
                           <div className={styles.actions}>
-                            <button className={styles.editBtn} onClick={() => setEditingTeam({ ...team })}>O'zgartirish</button>
-                            <button className={styles.deleteBtn} onClick={() => handleDelete(team.id)}>O'chirish</button>
+                            <span style={{ fontSize: '12px', color: 'var(--ink-2)' }}>Tahrirlash uchun<br/>Google Sheets'ga kiring</span>
                           </div>
                         </td>
                       </tr>
@@ -130,61 +125,6 @@ const AdminPanel = () => {
             )}
           </div>
         </div>
-
-        {/* Edit Modal */}
-        {editingTeam && (
-          <div className={styles.overlay} onClick={() => setEditingTeam(null)}>
-            <div className={styles.modal} onClick={e => e.stopPropagation()}>
-              <h2>Jamoani tahrirlash</h2>
-              
-              <div className={styles.formGroup}>
-                <label>Sinf</label>
-                <input 
-                  className={styles.input}
-                  value={editingTeam.teamClass} 
-                  onChange={(e) => setEditingTeam({...editingTeam, teamClass: e.target.value})} 
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <label>Asosiy Ishtirokchilar</label>
-                {editingTeam.mainMembers.map((m, i) => (
-                  <input
-                    key={`main-${i}`}
-                    className={styles.input}
-                    value={m}
-                    onChange={(e) => {
-                      const newMain = [...editingTeam.mainMembers];
-                      newMain[i] = e.target.value;
-                      setEditingTeam({...editingTeam, mainMembers: newMain});
-                    }}
-                  />
-                ))}
-              </div>
-
-              <div className={styles.formGroup}>
-                <label>Zaxira Ishtirokchilar</label>
-                {editingTeam.extraMembers.map((m, i) => (
-                  <input
-                    key={`extra-${i}`}
-                    className={styles.input}
-                    value={m}
-                    onChange={(e) => {
-                      const newExtra = [...editingTeam.extraMembers];
-                      newExtra[i] = e.target.value;
-                      setEditingTeam({...editingTeam, extraMembers: newExtra});
-                    }}
-                  />
-                ))}
-              </div>
-
-              <div className={styles.modalActions}>
-                <button className={styles.cancelBtn} onClick={() => setEditingTeam(null)}>Bekor qilish</button>
-                <button className={styles.saveBtn} onClick={saveEdit}>Saqlash</button>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </>
   );

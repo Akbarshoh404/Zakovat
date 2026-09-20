@@ -44,21 +44,36 @@ const LandingTeams = () => {
   };
 
   const [registeredTeams, setRegisteredTeams] = useState([]);
+  const [loadingTeams, setLoadingTeams] = useState(true);
+
+  const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbxSkydedbmPWLqW5zZwJtytIEJRYKVC-BSja5u0JqxRi78u1qgO2IB_xS0dwdFm0j9J4g/exec";
 
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("registeredTeams") || "[]");
-    const formatted = saved.map(t => ({
-      class: t.teamClass,
-      liga: "Noma'lum",
-      trues: 0,
-      falseAnswers: 0,
-      questions: 0,
-      penalty: 0,
-      score: 0,
-      mainMembers: t.mainMembers,
-      extraMembers: t.extraMembers
-    }));
-    setRegisteredTeams(formatted);
+    const fetchTeams = async () => {
+      try {
+        const res = await fetch(GOOGLE_SHEETS_URL);
+        const data = await res.json();
+        
+        const formatted = data.map(t => ({
+          class: t.teamClass,
+          liga: "Noma'lum",
+          trues: 0,
+          falseAnswers: 0,
+          questions: 0,
+          penalty: 0,
+          score: 0,
+          mainMembers: t.mainMembers,
+          extraMembers: t.extraMembers
+        }));
+        setRegisteredTeams(formatted);
+      } catch (err) {
+        console.error("Failed to load teams:", err);
+      } finally {
+        setLoadingTeams(false);
+      }
+    };
+    
+    fetchTeams();
   }, []);
 
   const ACADEMIC_YEARS = [

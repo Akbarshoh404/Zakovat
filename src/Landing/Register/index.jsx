@@ -35,7 +35,11 @@ const LandingRegister = () => {
     setFormData({ ...formData, extraMembers: updated });
   };
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbxSkydedbmPWLqW5zZwJtytIEJRYKVC-BSja5u0JqxRi78u1qgO2IB_xS0dwdFm0j9J4g/exec";
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!formData.teamClass) {
@@ -50,28 +54,35 @@ const LandingRegister = () => {
       return;
     }
 
-    // Save to localStorage
-    const saved = JSON.parse(localStorage.getItem("registeredTeams") || "[]");
-    
-    // Check if class already registered
-    if (saved.some(t => t.teamClass === formData.teamClass)) {
-      toast.error("Bu sinf ro'yxatdan o'tgan!");
-      return;
-    }
+    setIsSubmitting(true);
+    const loadingToast = toast.loading("Saqlanmoqda...");
 
     const newTeam = {
-      id: Date.now(),
+      id: Date.now().toString(),
       teamClass: formData.teamClass,
-      mainMembers: formData.mainMembers,
-      extraMembers: formData.extraMembers,
-      registrationDate: new Date().toISOString()
+      mainMembers: formData.mainMembers.filter(m => m.trim() !== ""),
+      extraMembers: formData.extraMembers.filter(m => m.trim() !== "")
     };
-    
-    saved.push(newTeam);
-    localStorage.setItem("registeredTeams", JSON.stringify(saved));
-    
-    toast.success("Jamoa muvaffaqiyatli ro'yxatdan o'tdi!");
-    navigate("/teams");
+
+    try {
+      // POST to Google Sheets
+      await fetch(GOOGLE_SHEETS_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain",
+        },
+        body: JSON.stringify(newTeam),
+      });
+      
+      toast.success("Jamoa muvaffaqiyatli ro'yxatdan o'tdi!", { id: loadingToast });
+      navigate("/teams");
+    } catch (error) {
+      console.error(error);
+      toast.error("Tarmoq xatosi. Qaytadan urinib ko'ring.", { id: loadingToast });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Close dropdown when clicking outside
@@ -194,9 +205,11 @@ const LandingRegister = () => {
                 </div>
               </div>
 
-              <button type="submit" className={styles.submitBtn}>
-                <span>Jamoani Saqlash</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              <button type="submit" className={styles.submitBtn} disabled={isSubmitting} style={{ opacity: isSubmitting ? 0.7 : 1 }}>
+                <span>{isSubmitting ? "Saqlanmoqda..." : "Jamoani Saqlash"}</span>
+                {!isSubmitting && (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                )}
               </button>
             </form>
           </div>
