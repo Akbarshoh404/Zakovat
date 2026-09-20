@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 
 const LandingRegister = () => {
   const navigate = useNavigate();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   
   // Generate classes from 5 to 11, each with 01 to 06
   const classes = [];
@@ -73,6 +74,17 @@ const LandingRegister = () => {
     navigate("/teams");
   };
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest(`.${styles.selectWrap}`)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <>
       <LandingNavbar />
@@ -100,17 +112,32 @@ const LandingRegister = () => {
               <div className={styles.formGroup}>
                 <label className={styles.label}>Sinfni tanlang</label>
                 <div className={styles.selectWrap}>
-                  <select 
-                    className={styles.select}
-                    value={formData.teamClass}
-                    onChange={(e) => setFormData({ ...formData, teamClass: e.target.value })}
+                  <div 
+                    className={`${styles.customSelect} ${dropdownOpen ? styles.selectOpen : ''}`} 
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
                   >
-                    <option value="">-- Sinfni tanlang --</option>
-                    {classes.map(c => (
-                      <option key={c} value={c}>{c} sinf</option>
-                    ))}
-                  </select>
-                  <svg className={styles.selectIcon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    <span className={formData.teamClass ? styles.selectValued : styles.selectPlaceholder}>
+                      {formData.teamClass ? `${formData.teamClass} sinf` : "-- Masalan: 11-03 sinf --"}
+                    </span>
+                    <svg className={styles.selectIcon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  </div>
+                  
+                  {dropdownOpen && (
+                    <div className={styles.dropdownMenu}>
+                      {classes.map(c => (
+                        <div 
+                          key={c} 
+                          className={`${styles.dropdownItem} ${formData.teamClass === c ? styles.dropdownItemSelected : ''}`}
+                          onClick={() => {
+                            setFormData({ ...formData, teamClass: c });
+                            setDropdownOpen(false);
+                          }}
+                        >
+                          {c} sinf
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -126,7 +153,7 @@ const LandingRegister = () => {
                       <input
                         type="text"
                         className={styles.input}
-                        placeholder="Ism va familiya"
+                        placeholder={i === 0 ? "Masalan: Ismatov Akbarshoh" : i === 1 ? "Masalan: Komilov Anasxon" : "Ism va familiya"}
                         value={name}
                         onChange={(e) => handleMainMemberChange(i, e.target.value)}
                         required
