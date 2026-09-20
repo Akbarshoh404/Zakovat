@@ -1,181 +1,113 @@
 .section {
-  width: 100%;
-  height: 80vh;
+  background: var(--bg);
+  padding: 160px 0;
+  border-top: 1px solid var(--rule);
 }
 
-.container {
-  width: 85%;
-  height: 100%;
+.inner {
+  max-width: 1280px;
+  width: 90%;
   margin: auto;
-  padding: 80px 0px;
-
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 120px;
   align-items: center;
-  gap: 30px;
 }
 
-.left {
-  width: 100%;
-  height: 100%;
-
+.text {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 20px;
-  align-items: center;
-
-  .card {
-    width: 100%;
-    height: 100%;
-    background-color: #f7efe8;
-    padding: 20px;
-    border-radius: 30px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-
-    .bigP {
-      background-color: #c9a571;
-      padding: 15px;
-      color: white;
-      font-family: Roboto;
-      font-size: 26px;
-      font-weight: 600;
-      line-height: 38px;
-      text-align: center;
-      border-radius: 20px;
-      width: 50%;
-    }
-
-    p {
-      font-family: Roboto;
-      font-size: 18px;
-      font-weight: 400;
-      line-height: 30px;
-      text-align: center;
-    }
-  }
+  align-items: flex-start;
+  gap: 48px;
+  opacity: 0;
+  transform: translateY(24px);
 }
 
-.img {
+.vis {
+  animation: fadeUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.heading {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.blocks {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 100%;
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 20px;
+.block {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--rule);
+  
+  &:first-child {
+    border-top: 1px solid var(--rule);
   }
 }
 
-@media (max-width: 1420px) {
-  .card {
-    padding: 10px;
-  }
-
-  .bigP {
-    max-width: 40% !important;
-    font-size: 22px !important;
-    padding: 10px !important;
-  }
+.blockTitle {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 16px;
 }
 
-@media (max-width: 1230px) {
-  .card {
-    p {
-      font-size: 14px !important;
-      line-height: 25px !important;
-    }
-  }
-
-  .bigP {
-    padding: 5px !important;
-    border-radius: 15px !important;
-    font-size: 18px !important;
-  }
-
-  .left {
-    width: 85% !important;
-  }
+.blockBody {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-2);
 }
 
-@media (max-width: 1200px) {
-  .img {
-    display: none !important;
-  }
-
-  .left {
-    width: 100% !important;
-  }
-
-  .card {
-    align-items: center;
-
-    p {
-      font-size: 20px !important;
-      text-align: center !important;
-    }
-
-    .bigP {
-      font-size: 24px !important;
-      padding: 10px !important;
-    }
-  }
+.photo {
+  opacity: 0;
+  transform: scale(0.95);
+  overflow: hidden;
+  position: relative;
 }
 
-@media (max-width: 910px) {
-  .card {
-    p {
-      font-size: 18px !important;
-    }
-  }
+.photo img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  display: block;
+  
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-@media (max-width: 830px) {
-  .card {
-    padding: 15px !important;
-  }
+.photo:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
 }
 
-@media (max-width: 660px) {
-  .section {
-    height: 90vh;
-  }
-
-  .bigP {
-    max-width: 80% !important;
-  }
+.photoVis {
+  animation: scaleIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
 }
 
-@media (max-width: 550px) {
-  .section {
-    height: 90vh;
-  }
-
-  .bigP {
-    width: 100% !important;
-  }
+@media (max-width: 900px) {
+  .inner { grid-template-columns: 1fr; gap: 64px; }
+  .photo img { height: 400px; }
+  .section { padding: 100px 0; }
 }
 
-@media (max-width: 490px) {
-  .section {
-    height: 90vh;
-  }
+@media (max-width: 520px) {
+  .photo img { height: 320px; }
 }
 
-@media (max-width: 420px) {
-  .section {
-    height: 110vh;
-  }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 340px) {
-  .section {
-    height: 120vh;
-  }
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
 }
+
+

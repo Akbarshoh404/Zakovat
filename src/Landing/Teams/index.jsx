@@ -2,16 +2,29 @@ import React, { useState, useEffect } from "react";
 import LandingNavbar from "../shared/Layouts/Navbar";
 import LandingFooter from "../shared/Layouts/Footer";
 import styles from "./style.module.scss";
-import { turnirScores1, turnirScores2 } from "../../Data/Tournament Scores";
+import { useLanguage } from "../../context/LanguageContext";
+import {
+  turnirScores1,
+  turnirScores2,
+  turnirScores3,
+} from "../../Data/Tournament Scores";
+
+const CloseIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+  </svg>
+);
 
 const LandingTeams = () => {
-  const [search, setSearch] = useState("");
   const [selectedRow, setSelectedRow] = useState(null);
+  const [visible, setVisible] = useState(false);
+  const [openYears, setOpenYears] = useState({ "2024/2025": true });
+  const { t } = useLanguage();
 
-  const combinedTeams = [...turnirScores1.teams, ...turnirScores2.teams].reduce(
-    (acc, team) => {
+  const getCombinedTeams = (teamsArray) => {
+    return teamsArray.reduce((acc, team) => {
       const existingTeam = acc.find((t) => t.class === team.class);
-
       if (existingTeam) {
         existingTeam.trues += team.trues;
         existingTeam.falseAnswers += team.questions - team.trues;
@@ -21,116 +34,153 @@ const LandingTeams = () => {
       } else {
         acc.push({
           ...team,
-          tournament: team.tournament || "Tournament 1",
           falseAnswers: team.questions - team.trues,
           score: team.trues - team.penalty,
+          liga: team.liga || "Noma'lum",
         });
       }
-
       return acc;
-    },
-    []
-  );
-
-  const filteredScores = combinedTeams.filter((score) =>
-    score.class.toLowerCase().includes(search.toLowerCase())
-  );
-
-  const handleRowClick = (score) => {
-    setSelectedRow(score);
+    }, []).sort((a, b) => b.score - a.score);
   };
 
-  const closeModal = () => {
-    setSelectedRow(null);
+  const ACADEMIC_YEARS = [
+    { year: "2026/2027", teams: [] },
+    { year: "2025/2026", teams: [] },
+    { 
+      year: "2024/2025", 
+      teams: getCombinedTeams([...turnirScores1.teams, ...turnirScores2.teams, ...turnirScores3.teams]) 
+    },
+  ];
+
+  const toggleYear = (year) => {
+    setOpenYears(prev => ({ ...prev, [year]: !prev[year] }));
   };
 
   useEffect(() => {
-    document.body.style.overflow = selectedRow ? "hidden" : "auto";
-    return () => {
-      document.body.style.overflow = "auto";
-    };
+    const t_out = setTimeout(() => setVisible(true), 100);
+    return () => clearTimeout(t_out);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = selectedRow ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [selectedRow]);
 
   return (
     <>
       <LandingNavbar />
-      <div className={styles.section}>
-        <div className={styles.container}>
-          <h1 className={styles.title}>Barcha Jamoalar</h1>
-          <div className={styles.tableWrapper}>
-            <input
-              type="text"
-              placeholder="Sinf bilan qidirish"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className={styles.searchBar}
-            />
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th>Sinf</th>
-                  <th>Liga</th>
-                  <th>To'g'ri</th>
-                  <th>Xato</th>
-                  <th>Savollar</th>
-                  <th>Jarima</th>
-                  <th>Natija</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredScores.map((score) => (
-                  <tr
-                    key={score.class}
-                    onClick={() => handleRowClick(score)}
-                    className={styles.row}
-                  >
-                    <td>{score.class}</td>
-                    <td>{score.liga}</td>
-                    <td>{score.trues}</td>
-                    <td>{score.falseAnswers}</td>
-                    <td>{score.questions}</td>
-                    <td>{score.penalty}</td>
-                    <td>{score.score}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      <div className={styles.page}>
+        <div className={`${styles.pageHeader} ${visible ? styles.sectionVisible : ""}`}>
+          <div className={styles.pageHeaderInner}>
+            <h1 className={styles.title}>
+              <div><span style={{ animationDelay: visible ? "0.1s" : "0s" }}>{t("teams_title")}</span></div>
+            </h1>
+            <p className={styles.subtitle}>{t("teams_sub")}</p>
           </div>
+        </div>
 
-          {selectedRow && (
-            <div className={styles.overlay}>
-              <div className={styles.modal}>
-                <div className={styles.modalContent}>
-                  <h2>Jamoa Natijalari</h2>
-                  <p>
-                    <strong>Singlar:</strong> {selectedRow.class}
-                  </p>
-                  <p>
-                    <strong>Liga:</strong> {selectedRow.liga}
-                  </p>
-                  <p>
-                    <strong>To'g'ri:</strong> {selectedRow.trues}
-                  </p>
-                  <p>
-                    <strong>Xato:</strong> {selectedRow.falseAnswers}
-                  </p>
-                  <p>
-                    <strong>Savollar:</strong> {selectedRow.questions}
-                  </p>
-                  <p>
-                    <strong>Jarima:</strong> {selectedRow.penalty}
-                  </p>
-                  <p>
-                    <strong>Natija:</strong> {selectedRow.score}
-                  </p>
-                  <button onClick={closeModal} className={styles.closeButton}>
-                    Yopish
-                  </button>
+        <div className={`${styles.section} ${visible ? styles.sectionVisible : ""}`}>
+          <div className={styles.container}>
+            
+            {ACADEMIC_YEARS.map((ay) => (
+              <div key={ay.year} className={styles.yearBlock}>
+                <div 
+                  className={styles.yearHeader} 
+                  onClick={() => toggleYear(ay.year)}
+                  style={{ cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                >
+                  <div style={{ display: "flex", alignItems: "baseline", gap: "16px" }}>
+                    <h2 className={styles.yearTitle}>{ay.year}</h2>
+                    <span className={styles.yearSub}>{t("acad_year")}</span>
+                  </div>
+                  <svg 
+                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+                    style={{ transform: openYears[ay.year] ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.3s ease" }}
+                  >
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
                 </div>
+
+                {openYears[ay.year] && (
+                  <>
+                    {ay.teams.length > 0 ? (
+                      <div className={styles.tableWrapper}>
+                        <table className={styles.table}>
+                          <thead>
+                            <tr>
+                              <th>{t("col_rank")}</th>
+                              <th>{t("col_class")}</th>
+                              <th>{t("col_liga")}</th>
+                              <th className={styles.numCol}>{t("col_true")}</th>
+                              <th className={styles.numCol}>{t("col_false")}</th>
+                              <th className={styles.numCol}>{t("col_questions")}</th>
+                              <th className={styles.numCol}>{t("col_penalty")}</th>
+                              <th className={styles.numCol}>{t("col_score")}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {ay.teams.map((score, index) => (
+                              <tr
+                                key={index}
+                                onClick={() => setSelectedRow(score)}
+                                className={styles.row}
+                              >
+                                <td className={styles.rank}>{String(index + 1).padStart(2, "0")}</td>
+                                <td className={styles.className}>{score.class}</td>
+                                <td>{score.liga}</td>
+                                <td className={styles.numCol}>{score.trues}</td>
+                                <td className={styles.numCol}>{score.falseAnswers}</td>
+                                <td className={styles.numCol}>{score.questions}</td>
+                                <td className={styles.numCol}>{score.penalty > 0 ? `-${score.penalty}` : "0"}</td>
+                                <td className={`${styles.numCol} ${styles.score}`}>{score.score}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    ) : (
+                      <div className={styles.empty}>
+                        <p>{t("empty_teams")}</p>
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+            ))}
+
+          </div>
+        </div>
+
+        {/* Modal */}
+        {selectedRow && (
+          <div className={styles.overlay} onClick={() => setSelectedRow(null)}>
+            <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+              <div className={styles.modalHeader}>
+                <h2 className={styles.modalTitle}>
+                  {selectedRow.class} <span className={styles.modalLiga}>/ {selectedRow.liga}</span>
+                </h2>
+                <button className={styles.closeBtn} onClick={() => setSelectedRow(null)}>
+                  <CloseIcon />
+                </button>
+              </div>
+
+              <div className={styles.modalStats}>
+                {[
+                  { label: t("col_true"), value: selectedRow.trues },
+                  { label: t("col_false"), value: selectedRow.falseAnswers },
+                  { label: t("col_questions"), value: selectedRow.questions },
+                  { label: t("col_penalty"), value: selectedRow.penalty },
+                  { label: t("col_score"), value: selectedRow.score, large: true },
+                ].map((stat) => (
+                  <div key={stat.label} className={`${styles.statItem} ${stat.large ? styles.statLarge : ""}`}>
+                    <span className={styles.statLabel}>{stat.label}</span>
+                    <span className={styles.statValue}>{stat.value}</span>
+                  </div>
+                ))}
               </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
       <LandingFooter />
     </>

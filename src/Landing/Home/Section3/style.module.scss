@@ -1,95 +1,120 @@
 .section {
-  width: 100%;
-  height: auto; /* Adjust height automatically for content */
-  background-color: #f7efe8;
-  padding: 20px 0;
+  background: var(--surface-2);
+  padding: 160px 0;
 }
 
-.container {
-  width: 90%; /* Make the container a bit narrower for smaller screens */
+.inner {
+  max-width: 1280px;
+  width: 90%;
   margin: auto;
-  padding: 60px 0px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   flex-direction: column;
-  gap: 50px;
+  align-items: flex-start;
+  gap: 80px;
 }
 
-.bigP {
-  background-color: #c9a571;
-  padding: 15px;
-  font-family: Roboto;
-  font-size: 40px;
-  font-weight: 600;
-  width: 40%; /* Adjusted for smaller screens */
-  text-align: center;
-  color: white;
-  border-radius: 15px;
-
-  @media (max-width: 768px) {
-    width: 60%; /* Expand width on medium screens */
-    font-size: 30px; /* Reduce font size */
-  }
-
-  @media (max-width: 480px) {
-    width: 80%; /* Expand further on small screens */
-    font-size: 24px; /* Further reduce font size */
-  }
+.header {
+  opacity: 0;
+  transform: translateY(24px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
 }
 
-.rules {
-  width: 100%;
+.headerVis {
+  animation: fadeUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.heading {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.list {
+  list-style: none;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr; /* Stack cards on medium screens */
-    gap: 30px; /* Adjust gap */
-  }
+  grid-template-columns: 1fr 1fr;
+  row-gap: 64px;
+  column-gap: 40px;
+  width: 100%;
 }
 
-.card {
-  width: 100%;
-  padding: 20px;
-  background-color: white;
-  border-radius: 30px;
-  box-shadow: 0px 4px 4px 0px #00000040;
+.item {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-
-  .number {
-    width: 50px;
-    height: 50px;
-    background-color: #c9a571;
-    border-radius: 100%;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Roboto;
-    font-size: 20px;
-    box-shadow: 0px 4px 4px 0px #00000040;
-
-    @media (max-width: 480px) {
-      width: 40px;
-      height: 40px;
-      font-size: 16px;
-    }
-  }
-
-  p {
-    font-family: Roboto;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 28px;
-    text-align: left;
-
-    @media (max-width: 480px) {
-      font-size: 18px; /* Reduce font size for smaller screens */
-      line-height: 24px;
-    }
-  }
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--rule);
+  opacity: 0;
+  transform: translateY(24px);
+  position: relative;
 }
+
+.itemVis {
+  animation: fadeUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  font-weight: 500;
+  margin-top: 12px;
+}
+
+/* About page specific styles */
+.aboutRules .num {
+  width: 80px;
+  height: 80px;
+  font-size: 2.5rem;
+  background: var(--ink);
+  color: var(--bg);
+  border: none;
+}
+
+.aboutRules .text {
+  font-size: 18px;
+  margin-top: 24px;
+}
+
+@media (max-width: 900px) {
+  .list { grid-template-columns: 1fr; row-gap: 48px; }
+  .section { padding: 100px 0; }
+}
+
+@media (max-width: 480px) {
+  .aboutRules .num { width: 64px; height: 64px; font-size: 2rem; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+

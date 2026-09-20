@@ -1,45 +1,49 @@
 import React from "react";
-
 import styles from "./style.module.scss";
-
 import img from "../../shared/images/header.jpg";
+import useScrollReveal from "../../../hooks/useScrollReveal";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const Section2 = () => {
+  const [refL, visL] = useScrollReveal();
+  const [refR, visR] = useScrollReveal();
+  const { t } = useLanguage();
+
   return (
-    <>
-      <div className={styles.section}>
-        <div className={styles.container}>
-          <div className={styles.left}>
-            <div className={styles.card}>
-              <div className={styles.bigP}>Bizning maqsad</div>
-
-              <p>
-                Qiziqarli musobaqalar tashkil etish, tanqidiy fikrlashni
-                rivojlantirish, shaxsiy va akademik o'sish uchun imkoniyatlar
-                yaratish orqali o'quvchilarni ilhomlantirish. Yoshlarni bilimga
-                boʻlgan intilishlarini qoʻllab-quvvatlash va ularni
-                ragʻbatlantirish.
+    <section className={styles.section}>
+      <div className={styles.inner}>
+        <div
+          ref={refL}
+          className={`${styles.text} ${visL ? styles.vis : ""}`}
+        >
+          <span className="label">{t("mission_label")}</span>
+          <h2 className={styles.heading}>
+            {t("mission_title")}
+          </h2>
+          <div className={styles.blocks}>
+            <div className={styles.block}>
+              <h3 className={styles.blockTitle}>{t("mission_1_title")}</h3>
+              <p className={styles.blockBody}>
+                {t("mission_1_body")}
               </p>
             </div>
-
-            <div className={styles.card}>
-              <div className={styles.bigP}>Bizning vazifamiz</div>
-
-              <p>
-                Do'stona raqobat orqali "Zakovat"ga qiziqishni uyg'otish va uni
-                o'rganishga bo'lgan muhabbatni rivojlantirish. Biz
-                o'quvchilarning ochilmagan qirralarini kashf etishga yordam
-                beramiz.
+            <div className={styles.block}>
+              <h3 className={styles.blockTitle}>{t("mission_2_title")}</h3>
+              <p className={styles.blockBody}>
+                {t("mission_2_body")}
               </p>
             </div>
-          </div>
-
-          <div className={styles.img}>
-            <img src={img} alt="" />
           </div>
         </div>
+
+        <div
+          ref={refR}
+          className={`${styles.photo} ${visR ? styles.photoVis : ""}`}
+        >
+          <img src={img} alt="Zakovat musobaqasi" />
+        </div>
       </div>
-    </>
+    </section>
   );
 };
 

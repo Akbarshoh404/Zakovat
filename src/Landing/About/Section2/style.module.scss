@@ -1,181 +1,35 @@
-.section {
-  width: 100%;
-  height: 80vh;
+.section { background: var(--surface); padding: 120px 0; }
+
+.inner {
+  max-width: 1280px; width: 90%; margin: auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
 }
 
-.container {
-  width: 85%;
-  height: 100%;
-  margin: auto;
-  padding: 80px 0px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 30px;
+.text {
+  display: flex; flex-direction: column; gap: 40px;
+  opacity: 0; transform: translateX(-20px);
 }
+.vis { animation: left 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+@keyframes left { to { opacity: 1; transform: translateX(0); } }
 
-.left {
-  width: 100%;
-  height: 100%;
+.label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); }
+.heading { font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; color: var(--ink); }
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 20px;
-  align-items: center;
+.blocks { display: flex; flex-direction: column; gap: 0; }
+.block { padding: 24px 0; border-top: 1px solid var(--rule); &:last-child { border-bottom: 1px solid var(--rule); } }
+.blockTitle { font-size: 13px; font-weight: 600; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 8px; text-transform: uppercase; }
+.blockBody { font-size: 15px; line-height: 1.75; color: var(--ink-2); }
 
-  .card {
-    width: 100%;
-    height: 100%;
-    background-color: #f7efe8;
-    padding: 20px;
-    border-radius: 30px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-
-    .bigP {
-      background-color: #c9a571;
-      padding: 15px;
-      color: white;
-      font-family: Roboto;
-      font-size: 26px;
-      font-weight: 600;
-      line-height: 38px;
-      text-align: center;
-      border-radius: 20px;
-      width: 50%;
-    }
-
-    p {
-      font-family: Roboto;
-      font-size: 18px;
-      font-weight: 400;
-      line-height: 30px;
-      text-align: center;
-    }
-  }
+.photo {
+  opacity: 0; transform: translateX(20px);
+  img { width: 100%; height: 500px; object-fit: cover; border-radius: 10px; display: block; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+  &:hover img { transform: scale(1.02); }
 }
+.photoVis { animation: right 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.12s forwards; }
+@keyframes right { to { opacity: 1; transform: translateX(0); } }
 
-.img {
-  width: 100%;
-  height: 100%;
+@media (max-width: 900px) { .inner { grid-template-columns: 1fr; gap: 48px; } .photo img { height: 320px; } .section { padding: 80px 0; } }
+@media (max-width: 520px) { .photo img { height: 240px; } }
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 20px;
-  }
-}
 
-@media (max-width: 1420px) {
-  .card {
-    padding: 10px;
-  }
-
-  .bigP {
-    max-width: 40% !important;
-    font-size: 22px !important;
-    padding: 10px !important;
-  }
-}
-
-@media (max-width: 1230px) {
-  .card {
-    p {
-      font-size: 14px !important;
-      line-height: 25px !important;
-    }
-  }
-
-  .bigP {
-    padding: 5px !important;
-    border-radius: 15px !important;
-    font-size: 18px !important;
-  }
-
-  .left {
-    width: 85% !important;
-  }
-}
-
-@media (max-width: 1200px) {
-  .img {
-    display: none !important;
-  }
-
-  .left {
-    width: 100% !important;
-  }
-
-  .card {
-    align-items: center;
-
-    p {
-      font-size: 20px !important;
-      text-align: center !important;
-    }
-
-    .bigP {
-      font-size: 24px !important;
-      padding: 10px !important;
-    }
-  }
-}
-
-@media (max-width: 910px) {
-  .card {
-    p {
-      font-size: 18px !important;
-    }
-  }
-}
-
-@media (max-width: 830px) {
-  .card {
-    padding: 15px !important;
-  }
-}
-
-@media (max-width: 660px) {
-  .section {
-    height: 90vh;
-  }
-
-  .bigP {
-    max-width: 80% !important;
-  }
-}
-
-@media (max-width: 550px) {
-  .section {
-    height: 90vh;
-  }
-
-  .bigP {
-    width: 100% !important;
-  }
-}
-
-@media (max-width: 490px) {
-  .section {
-    height: 90vh;
-  }
-}
-
-@media (max-width: 420px) {
-  .section {
-    height: 110vh;
-  }
-}
-
-@media (max-width: 340px) {
-  .section {
-    height: 120vh;
-  }
-}

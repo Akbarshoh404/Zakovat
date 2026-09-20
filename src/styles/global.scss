@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+/* ─── Design Tokens (Minimal / Apple / KINK) ─────────────────── */
+:root,
+[data-theme="light"] {
+  --bg:          #FAFAFA;
+  --surface:     #FFFFFF;
+  --surface-2:   #F4F4F4;
+  --ink:         #000000;
+  --ink-2:       #666666;
+  --ink-3:       #999999;
+  --accent:      #000000;
+  --accent-dim:  rgba(0, 0, 0, 0.05);
+  --border:      rgba(0, 0, 0, 0.1);
+  --rule:        rgba(0, 0, 0, 0.15);
+  --nav-bg:      rgba(250, 250, 250, 0.85);
+  --shadow:      none;
+  --shadow-lg:   none;
+  --radius:      0px;
+  --radius-lg:   0px;
+  --logo-invert: 0;
+}
+
+[data-theme="dark"] {
+  --bg:          #000000;
+  --surface:     #000000;
+  --surface-2:   #111111;
+  --ink:         #FFFFFF;
+  --ink-2:       #A0A0A0;
+  --ink-3:       #666666;
+  --accent:      #FFFFFF;
+  --accent-dim:  rgba(255, 255, 255, 0.1);
+  --border:      rgba(255, 255, 255, 0.15);
+  --rule:        rgba(255, 255, 255, 0.2);
+  --nav-bg:      rgba(0, 0, 0, 0.85);
+  --shadow:      none;
+  --shadow-lg:   none;
+  --radius:      0px;
+  --radius-lg:   0px;
+  --logo-invert: 1;
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; border-radius: 0; }
+button { font-family: inherit; }
+
+/* ─── Keyframes ──────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes revealLine {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--rule); }
+
+/* ─── Selection ──────────────────────────────────────────────── */
+::selection {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* ─── Utility ────────────────────────────────────────────────── */
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  display: inline-block;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+}

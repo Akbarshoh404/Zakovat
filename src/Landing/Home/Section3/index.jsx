@@ -1,85 +1,47 @@
 import React from "react";
-
 import styles from "./style.module.scss";
+import useScrollReveal from "../../../hooks/useScrollReveal";
+import { useLanguage } from "../../../context/LanguageContext";
 
-const Section3 = () => {
+const Section3 = ({ isAbout }) => {
+  const [ref, vis] = useScrollReveal();
+  const { t } = useLanguage();
+
+  const RULES = [
+    t("rule_1"),
+    t("rule_2"),
+    t("rule_3"),
+    t("rule_4"),
+    t("rule_5"),
+    t("rule_6"),
+    t("rule_7"),
+    t("rule_8"),
+  ];
+
   return (
-    <>
-      <div className={styles.section}>
-        <div className={styles.container}>
-          <div className={styles.bigP}>QOIDALAR</div>
-
-          <div className={styles.rules}>
-            <div className={styles.card}>
-              <div className={styles.number}>1</div>
-              <p>
-                O'yinda jamoalar o'zlarining tezkor fikrlashlari va bilimlaridan
-                foydalanib turli darajadagi savollarga 1 daqiqa ichida javob
-                berishlari kerak.
-              </p>
-            </div>
-
-            <div className={styles.card}>
-              <div className={styles.number}>2</div>
-              <p>
-                Har bir sinfdan beshta asosiy va ikkita zaxira o'yinchisidan
-                iborat jamoa tuzilib, javoblar birgalikda muhokama qilinadi
-              </p>
-            </div>
-
-            <div className={styles.card}>
-              <div className={styles.number}>3</div>
-              <p>
-                Zakovatda 3ta Liga bor:
-                <br /> • Liga II (5-6 - sinflar); <br />• Liga I (7-8 -
-                sinflar);
-                <br />• Oliy liga (9 - 10 - 11 - sinflar).
-              </p>
-            </div>
-
-            <div className={styles.card}>
-              <div className={styles.number}>4</div>
-              <p>
-                Moddiy buyumlarga zarar yetkazish va baland ovozda gapirish
-                ta'qiqlanadi. Aks holda jamoaga 1 ball jarima yoziladi.
-              </p>
-            </div>
-
-            <div className={styles.card}>
-              <div className={styles.number}>5</div>
-              <p>
-                Javobni belgilangan vaqt ichida topshirishingiz zarur (agar 3
-                soniyadan ko‘proq vaqt kutilsa, javob qabul qilinmaydi).
-              </p>
-            </div>
-
-            <div className={styles.card}>
-              <div className={styles.number}>6</div>
-              <p>
-                Belgilangan vaqtdan kechikib kelgan jamoalar o'yinda qatnashish
-                imkoniyatidan mahrum bo'lishadi.
-              </p>
-            </div>
-
-            <div className={styles.card}>
-              <div className={styles.number}>7</div>
-              <p>
-                Har bir liga o'yini 2 turdan iborat. O'yindagi savollar soni
-                liga turiga qarab o'zgaradi (16,20,24).
-              </p>
-            </div>
-
-            <div className={styles.card}>
-              <div className={styles.number}>8</div>
-              <p>
-                O'yinchilarni faqat ikki raund o'rtasidagi 10 daqiqalik tanaffus
-                vaqtida almashtirish mumkin.
-              </p>
-            </div>
-          </div>
+    <section className={`${styles.section} ${styles.aboutRules}`} ref={ref}>
+      <div className={styles.inner}>
+        <div className={`${styles.header} ${vis ? styles.headerVis : ""}`}>
+          <span className="label">{t("rules_label")}</span>
+          <h2 className={styles.heading}>{t("rules_title")}</h2>
         </div>
+
+        <ol className={styles.list}>
+          {RULES.map((rule, i) => (
+            <li
+              key={i}
+              className={`${styles.item} ${vis ? styles.itemVis : ""}`}
+              style={{ transitionDelay: vis ? `${i * 55}ms` : "0ms" }}
+            >
+              <span className={styles.num} aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <p className={styles.text}>{rule}</p>
+            </li>
+          ))}
+        </ol>
       </div>
-    </>
+    </section>
   );
 };
 
