@@ -78,64 +78,90 @@ const LandingRegister = () => {
       <LandingNavbar />
       <div className={styles.page}>
         <div className={styles.header}>
+          <div className={styles.bgGlow}></div>
           <div className={styles.headerInner}>
+            <div className={styles.stylishBadge}>
+              <span className={styles.dot}></span>
+              Yangi Mavsum
+            </div>
             <h1 className={styles.heading}>Jamoani ro'yxatdan o'tkazish</h1>
-            <p className={styles.subtitle}>O'z sinfingizni tanlang va ishtirokchilarni kiriting</p>
+            <p className={styles.subtitle}>O'z sinfingizni tanlang va intellektual janglarga qo'shiling</p>
           </div>
         </div>
 
         <div className={styles.content}>
           <div className={styles.container}>
             <form className={styles.form} onSubmit={handleSubmit}>
+              <div className={styles.formHeader}>
+                <h2>Ro'yxatdan O'tish Formasi</h2>
+                <p>Barcha maydonlarni to'ldiring</p>
+              </div>
+
               <div className={styles.formGroup}>
                 <label className={styles.label}>Sinfni tanlang</label>
-                <select 
-                  className={styles.select}
-                  value={formData.teamClass}
-                  onChange={(e) => setFormData({ ...formData, teamClass: e.target.value })}
-                >
-                  <option value="">-- Sinf --</option>
-                  {classes.map(c => (
-                    <option key={c} value={c}>{c}</option>
+                <div className={styles.selectWrap}>
+                  <select 
+                    className={styles.select}
+                    value={formData.teamClass}
+                    onChange={(e) => setFormData({ ...formData, teamClass: e.target.value })}
+                  >
+                    <option value="">-- Sinfni tanlang --</option>
+                    {classes.map(c => (
+                      <option key={c} value={c}>{c} sinf</option>
+                    ))}
+                  </select>
+                  <svg className={styles.selectIcon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+              </div>
+
+              <div className={styles.membersSection}>
+                <div className={styles.sectionHeader}>
+                  <h3 className={styles.sectionTitle}>Asosiy ishtirokchilar</h3>
+                  <span className={styles.sectionBadge}>5 ta</span>
+                </div>
+                <div className={styles.inputsGrid}>
+                  {formData.mainMembers.map((name, i) => (
+                    <div key={`main-${i}`} className={styles.inputWrap}>
+                      <span className={styles.numberBadge}>{i + 1}</span>
+                      <input
+                        type="text"
+                        className={styles.input}
+                        placeholder="Ism va familiya"
+                        value={name}
+                        onChange={(e) => handleMainMemberChange(i, e.target.value)}
+                        required
+                      />
+                      <svg className={styles.inputIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </div>
                   ))}
-                </select>
+                </div>
               </div>
 
               <div className={styles.membersSection}>
-                <h3 className={styles.sectionTitle}>Asosiy ishtirokchilar (5 ta)</h3>
-                {formData.mainMembers.map((name, i) => (
-                  <div key={`main-${i}`} className={styles.inputWrap}>
-                    <span className={styles.numberBadge}>{i + 1}</span>
-                    <input
-                      type="text"
-                      className={styles.input}
-                      placeholder="Ism va familiya"
-                      value={name}
-                      onChange={(e) => handleMainMemberChange(i, e.target.value)}
-                      required
-                    />
-                  </div>
-                ))}
-              </div>
-
-              <div className={styles.membersSection}>
-                <h3 className={styles.sectionTitle}>Zaxira ishtirokchilari (2 ta)</h3>
-                {formData.extraMembers.map((name, i) => (
-                  <div key={`extra-${i}`} className={styles.inputWrap}>
-                    <span className={`${styles.numberBadge} ${styles.extraBadge}`}>{i + 1}</span>
-                    <input
-                      type="text"
-                      className={styles.input}
-                      placeholder="Ism va familiya (Ixtiyoriy)"
-                      value={name}
-                      onChange={(e) => handleExtraMemberChange(i, e.target.value)}
-                    />
-                  </div>
-                ))}
+                <div className={styles.sectionHeader}>
+                  <h3 className={styles.sectionTitle}>Zaxira ishtirokchilari</h3>
+                  <span className={`${styles.sectionBadge} ${styles.extraBadgeText}`}>Ixtiyoriy</span>
+                </div>
+                <div className={styles.inputsGrid}>
+                  {formData.extraMembers.map((name, i) => (
+                    <div key={`extra-${i}`} className={styles.inputWrap}>
+                      <span className={`${styles.numberBadge} ${styles.extraBadge}`}>{i + 1}</span>
+                      <input
+                        type="text"
+                        className={styles.input}
+                        placeholder="Ism va familiya"
+                        value={name}
+                        onChange={(e) => handleExtraMemberChange(i, e.target.value)}
+                      />
+                      <svg className={styles.inputIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <button type="submit" className={styles.submitBtn}>
-                Ro'yxatdan o'tish
+                <span>Jamoani Saqlash</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </button>
             </form>
           </div>
